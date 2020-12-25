@@ -1,6 +1,11 @@
 <?php
 
+use App\Models\RoomSeat;
+use App\Models\StudentGroup;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RoomController;
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\RoomSeatController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +27,16 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+
+Route::middleware(['auth'])->prefix('source')->group(function(){
+    Route::resources([
+        'room'=>RoomController::class,
+        'student'=>StudentController::class,
+        'roomSeat' => RoomSeatController::class,
+        'StudentGroup' => StudentGroup::class
+    ]);
+
+
+
+});
