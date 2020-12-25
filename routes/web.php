@@ -1,8 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\RoomController;
-use App\Http\Controllers\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,11 +13,12 @@ use App\Http\Controllers\StudentController;
 |
 */
 
-Route::resources([
-    'students' => StudentController::class,
-    'rooms' => RoomController::class
-]);
-
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
