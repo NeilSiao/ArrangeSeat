@@ -2,6 +2,7 @@
 
 use App\Models\RoomSeat;
 use App\Models\StudentGroup;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\StudentController;
@@ -23,7 +24,7 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('home');
 })->middleware(['auth'])->name('dashboard');
 
 
@@ -34,10 +35,7 @@ Route::middleware(['auth'])->prefix('source')->group(function(){
         'room'=>RoomController::class,
         'student'=>StudentController::class,
         'roomSeat' => RoomSeatController::class,
-        'StudentGroup' => StudentGroup::class
-    ]);
-
-
+        'StudentGroup' => StudentGroup::class    ]);
 
 });
 

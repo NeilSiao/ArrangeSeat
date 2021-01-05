@@ -16,7 +16,7 @@
                 <a class="nav-link active" href="{{url('/')}}">首頁 <span class="sr-only">(當前位置)</span></a>
                 <a class="nav-link" href="#">新增學生</a>
                 <a class="nav-link" href="#">新增教室</a>
-                <a class="nav-link" href="./arrangeSeat.html">排列學生與教室座位</a>
+                <a class="nav-link" href="{{route('roomSeat.index')}}">排列學生與教室座位</a>
                 <div class="float-right">
                     @auth
                     <a class="nav-link" href="#">個人資訊</a>
