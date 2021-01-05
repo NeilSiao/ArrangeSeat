@@ -8,9 +8,11 @@
     <link rel="stylesheet" type="text/css" href="{{asset('css/app.css')}}"> <link/>
     <title>排教室系統</title>
     <script src="{{asset('js/app.js')}}" defer></script>
+    <link rel="icon" href="{{asset('icons/cogwheel.png')}}">
 </head>
 <body>
 
+    @include('components.navbar')
     @yield('content')
 
     <footer class="bg-light">

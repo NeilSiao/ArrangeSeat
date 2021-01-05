@@ -1,7 +1,10 @@
+
+
+
+
 @extends('layouts.sys')
 
 @section('content')
-
     <div class="row" style="min-height: calc(100vh - 65px - 56px); width: 100%;">
         <div class="container">
 
@@ -33,5 +36,4 @@
             </div>
         </div>
     </div>
-
 @endsection 
