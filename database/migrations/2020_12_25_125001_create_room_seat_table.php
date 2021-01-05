@@ -15,9 +15,9 @@ class CreateRoomSeatTable extends Migration
     {
         Schema::create('room_seat', function (Blueprint $table) {
             $table->id();
-            $table->foreignkey('room_id');
-            $table->foreignkey('seat_id');
-            $table->foreignkey('student_id');
+            $table->foreignId('room_id');
+            $table->foreignId('seat_id');
+            $table->foreignId('student_id');
             $table->tinyInteger('left');
             $table->tinyInteger('top');
             $table->tinyInteger('rotate');
