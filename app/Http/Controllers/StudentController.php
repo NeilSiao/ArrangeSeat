@@ -32,8 +32,11 @@ class StudentController extends Controller
         dd(14);
     
     }
-    public function destroy(Request $request){
-        $result = Room::where($request->input('room_id'))->delete();
+    public function destroy(Request $request, Student $student){
+        $result = $student->delete();
+        
+        session()->flash('msg', 'Delete Succeed');
+
         return back();
     }
 }
