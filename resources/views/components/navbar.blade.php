@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light sticky-top" style="background-color: rgb(98, 170, 162);">
+<nav class="navbar navbar-expand-lg navbar-light mb-3" style="background-color: rgb(98, 170, 162);">
     <a class="navbar-brand" href="#">
         <img src="{{asset('icons/cogwheel.png')}}" width="30" height="30" class="d-inline-block align-top text-white" alt=""
             loading="lazy">

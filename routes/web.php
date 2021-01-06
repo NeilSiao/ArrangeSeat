@@ -30,7 +30,7 @@ Route::get('/dashboard', function () {
 
 
 
-Route::middleware(['auth'])->prefix('source')->group(function(){
+Route::middleware(['auth'])->group(function(){
     Route::resources([
         'room'=>RoomController::class,
         'student'=>StudentController::class,

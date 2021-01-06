@@ -13,7 +13,7 @@
         </div>
     </div>
 
-    <div class="container" style="min-height: calc(100vh - 538px - 65px);">
+    <div class="container" style="min-height: calc(100vh - 538px - 65px - 16px);">
         <h1 class="mb-3">使用步驟</h1>
         <div class="card-deck mt-3">
             <div class="card">

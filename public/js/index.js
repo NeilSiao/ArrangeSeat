@@ -116,7 +116,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var type
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/neil/ArrangeSeat/resources/js/index.js */"./resources/js/index.js");
+module.exports = __webpack_require__(/*! /var/www/html/resources/js/index.js */"./resources/js/index.js");
 
 
 /***/ })
