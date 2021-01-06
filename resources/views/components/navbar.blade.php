@@ -10,15 +10,14 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-link active" href="{{url('/')}}">首頁 <span class="sr-only">(當前位置)</span></a>
-            <a class="nav-link" href="#">新增學生</a>
-            <a class="nav-link" href="#">新增教室</a>
+            <a class="nav-link active" href="{{route('index')}}">首頁 <span class="sr-only">(當前位置)</span></a>
+            <a class="nav-link" href="{{route('student.index')}}">新增學生</a>
+            <a class="nav-link" href="{{route('room.index') }}">新增教室</a>
             <a class="nav-link" href="{{route('roomSeat.index')}}">排列學生與教室座位</a>
             
             @auth
-            <a class="nav-link" href="#">個人資訊</a>
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">登出</a>
-            <a class="nav-link" href="{{route('logout')}}">Login</a>
+            <a class="nav-link" href="{{route('home')}}}">個人資訊</a>
+            <a class="nav-link" href="{{route('logout')}}" tabindex="-1">登出</a>
             @else
             <a class="nav-link" href="{{route('login')}}">Login</a>
             @endauth

@@ -22,8 +22,9 @@ class StudentFactory extends Factory
     public function definition()
     {
         return [
-            'no' => $this->faker->number,
-            'name' => $this->faker->name
+            'no' => $this->faker->numberBetween(1000,9999),
+            'name' => $this->faker->name,
+            'photo' => $this->faker->image(public_path('stu_img'), 400,300,null,false),
         ];
     }
 }

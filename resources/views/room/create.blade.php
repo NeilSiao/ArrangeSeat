@@ -4,7 +4,7 @@
 <div class="form-group">
     <button class="btn-primary btn" type="submit" form="addRoom" >Save</button>
 </div>
-<h3>Add Room</h3>
+<h3>Create Room Data</h3>
 
 <form id="addRoom">
     <div class="form-group">

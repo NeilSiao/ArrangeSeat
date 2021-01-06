@@ -13,11 +13,9 @@
 <body>
 
     @include('components.navbar')
-    <div class="container-fluid" id="" style="min-height: calc(100vh - 538px - 65px - 16px);">
+    <div class="container-fluid" id="" style="min-height: calc(100vh - 65px - 72px);">
         @yield('content')
     </div>
-
-
     @include('components.footer')
 </body>
 

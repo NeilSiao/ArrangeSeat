@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Student;
 use Illuminate\Database\Seeder;
 
 class StudentSeeder extends Seeder
@@ -13,6 +14,9 @@ class StudentSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $path = public_path('stu_img');
+        array_map('unlink', glob(public_path('stu_img/*.png')));
+   
+        Student::factory(10)->create();
     }
 }

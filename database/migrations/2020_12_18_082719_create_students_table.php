@@ -17,7 +17,7 @@ class CreateStudentsTable extends Migration
             $table->id();
             $table->string('no',30);
             $table->string('name',100);
-            $table->binary('photo');
+            $table->string('photo');
             $table->timestamps();
         });
     }
