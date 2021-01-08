@@ -3,39 +3,63 @@
 namespace App\Http\Controllers;
 
 use App\Models\Student;
+use App\Service\UploadFileHandler;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
-    public function index(Request $request){
-        
-        $students =  Student::paginate(5);
 
-        return view('student.index',compact(
+    public $fileHandler;
+    public function __construct(UploadFileHandler $fileHandler) {
+        $this->fileHandler = $fileHandler;
+
+    }
+    public function index(Request $request)
+    {
+
+        $students =  Student::paginate(5);
+        
+        return view('student.index', compact(
             'students'
         ));
     }
-    public function create(Request $request){
+    public function create(Request $request)
+    {
         return view('student.create');
     }
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         dd(12);
-    }   
-    public function show(Request $request, Student $student){ 
+    }
+    public function show(Request $request, Student $student)
+    {
         return view('student.show');
     }
-    
-    public function edit(Request $request){
+
+    public function edit(Request $request)
+    {
         return view('student.edit');
     }
-    public function update(Request $request){
-        dd(14);
-    
+    public function update(Request $request, Student $student)
+    {
+        $no = $request->get('no');
+        $name = $request->get('name');
+
+        $path = $this->fileHandler->saveStudentAvatar($request->file('upload_img'));
+        $student->photo = $path;
+        $student->no = $no;
+        $student->name = $name;
+        $student->photo = $path;
+        $student->save();
+
+        session()->flash('msg', 'Update Action Succeed');
+        return back();
     }
-    public function destroy(Request $request, Student $student){
+    public function destroy(Request $request, Student $student)
+    {
         $result = $student->delete();
-        
-        session()->flash('msg', 'Delete Succeed');
+
+        session()->flash('msg', 'Delete Action Succeed');
 
         return back();
     }

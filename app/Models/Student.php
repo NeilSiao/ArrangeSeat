@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Student extends Model
 {
@@ -11,8 +12,8 @@ class Student extends Model
 
     public function getPhotoAttribute($value)
     {
-        $path= 'stu_img' . DIRECTORY_SEPARATOR . $value;
-        return asset($path);
+        $path=  Storage::url($value);
+        return $path;
     }
     public function getGenderAttribute($value)
     {
