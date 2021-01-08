@@ -24,7 +24,7 @@ class StudentFactory extends Factory
         return [
             'no' => $this->faker->numberBetween(1000,9999),
             'name' => $this->faker->name,
-            'photo' => $this->faker->image(storage_path('app/public/stu_img'), 400,300,null,false),
+            'photo' => 'stu_img/' . $this->faker->image(storage_path('app/public/stu_img'), 400,300,null,false),
         ];
     }
 }

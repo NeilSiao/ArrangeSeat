@@ -49,7 +49,6 @@ class StudentController extends Controller
         $student->photo = $path;
         $student->no = $no;
         $student->name = $name;
-        $student->photo = $path;
         $student->save();
 
         session()->flash('msg', 'Update Action Succeed');
@@ -57,10 +56,9 @@ class StudentController extends Controller
     }
     public function destroy(Request $request, Student $student)
     {
+        $this->fileHandler->deleteStudentAvatar($student->photo);
         $result = $student->delete();
-
         session()->flash('msg', 'Delete Action Succeed');
-
         return back();
     }
 }

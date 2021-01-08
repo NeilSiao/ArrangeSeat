@@ -10,6 +10,9 @@ class UploadFileHandler{
         //dd($path, Storage::exists('stu_img/' . $path) );
         return $path;
     }
+    public function deleteStudentAvatar($path){
+        Storage::delete($path);
+    }
 
 }
 
