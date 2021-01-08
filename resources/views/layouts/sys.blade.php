@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="{{asset('css/app.css')}}"> <link/>
     <title>排教室系統</title>
-    <script src="{{asset('js/app.js')}}" defer></script>
+    <script src="{{asset('js/app.js')}}" ></script>
     <link rel="icon" href="{{asset('icons/cogwheel.png')}}">
 </head>
 <body>
@@ -17,6 +17,11 @@
         @yield('content')
     </div>
     @include('components.footer')
+    <script>
+        $(document).ready(function(){
+            bsCustomFileInput.init();
+        });
+    </script>
 </body>
 
 </html>

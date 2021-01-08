@@ -5,6 +5,7 @@
         <div class="alert alert-success">{{ session('msg') }}</div>
     @endif
     <h3>Create Student Data</h3>
+    <a href="{{route('student.create')}}" class="btn btn-primary m-1">Add Student</a>
     <table class="table">
         <thead>
             <tr>
@@ -51,7 +52,10 @@
         </tbody>
     </table>
     {!! $students->links() !!}
-    <script>
+    <script >
+        $(document).ready(function(){
+            bsCustomFileInput.init();
+        })
         function edit(evt) {
             window.evt = evt;
             var tr = $(evt).closest('tr');
@@ -73,7 +77,17 @@
 
             var nameText = $(name).text();
             var genderText = $(gender).text();
-
+            switch (genderText) {
+                case 'M':
+                    $('#genderMale').attr("checked", 'checked');
+                    break;
+                case 'F':
+                    $('#genderFemale').attr("checked", 'checked');
+                    break;
+                default:
+                    $('#genderFemale').attr("checked", '');
+                    break;
+            }
             document.getElementById('id').value = idText;
             document.getElementById('no').value = noText;
             document.getElementById('name').value = nameText;

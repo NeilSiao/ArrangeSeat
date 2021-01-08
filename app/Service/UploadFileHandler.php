@@ -13,6 +13,5 @@ class UploadFileHandler{
     public function deleteStudentAvatar($path){
         Storage::delete($path);
     }
-
 }
 
