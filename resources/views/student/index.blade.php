@@ -4,7 +4,13 @@
     @include('components.alert')
     
     <h3>Create Student Data</h3>
-    <a href="{{route('student.create')}}" class="btn btn-primary m-1">Add Student</a>
+    <div class="row">
+        <div class="col-auto my-2">
+            <a href="{{route('student.create')}}" class="btn btn-primary m-1">Add Student</a>
+            <a href="{{route('student.excel')}}" class="btn btn-secondary m-1">Download Excel</a>
+
+        </div>
+    </div>
     <table class="table">
         <thead>
             <tr>

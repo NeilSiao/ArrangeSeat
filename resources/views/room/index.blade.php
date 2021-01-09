@@ -4,33 +4,36 @@
     @include('components.alert')
     
     <h3>Create Room Data</h3>
-    <a href="{{route('student.create')}}" class="btn btn-primary m-1">Add Student</a>
+    
+    <div class="row">
+        <div class="col-auto my-2">
+            <a href="{{route('room.create')}}" class="btn btn-primary m-1">Add Room</a>
+            <a href="{{route('room.excel')}}" class="btn btn-secondary m-1">Download Excel</a>
+        </div>
+    </div>
+
     <table class="table">
         <thead>
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">no</th>
-                <th scope="col">photo</th>
                 <th scope="col">name</th>
-                <th scope="col">gender</th>
-                <th scope="col">action</th>
             </tr>
         </thead>
         <tbody>
-            @if ($students->isNotEmpty())
-                @foreach ($students as $student)
+            @if ($rooms->isNotEmpty())
+                @foreach ($rooms as $room)
                     <tr>
-                        <th class="align-middle" style="width: 10%" scope="row">{{ $student->id }}</th>
-                        <td class="align-middle" style="width: 20%">{{ $student->no }}</td>
-                        <td class="align-middle" style="width: 15%"><img width="64px" height="64px"
-                                src="{{ $student->photo }}" alt=""></td>
-                        <td class="align-middle" style="width: 20%">{{ $student->name }}</td>
-                        <td class="align-middle" style="width: 20%">{{ $student->gender }}</td>
+                        <th class="align-middle" style="width: 10%" scope="row">{{ $room->id }}</th>
+                        <td class="align-middle" style="width: 20%">{{ $room->no }}</td>
+                        
+                        <td class="align-middle" style="width: 20%">{{ $room->name }}</td>
+                        
                         <td class="align-middle" style="width: 20%">
                             <div class="d-flex justify-content-around">
-                                <button class="btn-sm btn-warning" data-id="{{ $student->id }}" data-toggle="modal"
+                                <button class="btn-sm btn-warning" data-id="{{ $room->id }}" data-toggle="modal"
                                     onclick="edit(this)">Edit</button>
-                                <form action="{{ route('student.destroy', $student->id) }} }}" method="post" id="deleteRow">
+                                <form action="{{ route('room.destroy', $room->id) }} }}" method="post" id="deleteRow">
                                     @csrf
                                     <input type="hidden" name="_method" value="DELETE">
                                     <button class="btn-sm btn-danger" type="submit" form="deleteRow">Delete</button>
@@ -50,7 +53,7 @@
             @endif
         </tbody>
     </table>
-    {!! $students->links() !!}
+    {!! $rooms->links() !!}
     <script >
         $(document).ready(function(){
             bsCustomFileInput.init();
@@ -63,36 +66,18 @@
             var id = tr.find('th');
 
             var no = tds[0];
-            var photo = tds[1];
-            var name = tds[2];
-
-            var gender = tds[3];
+            var name = tds[1];
             //console.log(row)
             var noText = $(no).text();
             var idText = $(id).text();
-            //console.log(no);
-            //console.log(noText);
-            var src = $(photo).find('img').attr('src');
-
             var nameText = $(name).text();
-            var genderText = $(gender).text();
-            switch (genderText) {
-                case 'M':
-                    $('#genderMale').attr("checked", 'checked');
-                    break;
-                case 'F':
-                    $('#genderFemale').attr("checked", 'checked');
-                    break;
-                default:
-                    $('#genderFemale').attr("checked", '');
-                    break;
-            }
+            
             document.getElementById('id').value = idText;
             document.getElementById('no').value = noText;
             document.getElementById('name').value = nameText;
-            document.getElementById('stu_img').src = src;
+            
             $('#editModal').show();
-            var editFormAction = "{{ route('student.index') }}" + '/' + idText;
+            var editFormAction = "{{ route('room.index') }}" + '/' + idText;
             document.getElementById('editForm').action = editFormAction;
         }
 
@@ -102,7 +87,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Modify Student Data</h5>
+                    <h5 class="modal-title">Modify room Data</h5>
                     <button type="button" class="close" data-dismiss="modal" onclick="$('#editModal').hide();"
                         aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -131,33 +116,6 @@
                             <label for="name" class="col-sm-2 col-form-label">name</label>
                             <div class="col-sm-10">
                                 <input type="text" name="name" class="form-control" id="name" placeholder="name">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-2 col-form-label">Photo: </label>
-                            <div class="col-sm-10">
-                                <img id="stu_img" height="64px" width="64px" src="" alt="">
-                            </div>
-                            <div class="col-auto">
-                                <div class="input-group mt-3">
-                                    <div class="custom-file">
-                                        <input type="file" id="upload_img" name="upload_img" class="custom-file-input">
-                                        <label for="upload_img" class="custom-file-label">Choose file</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-2 col-form-label">Gender: </label>
-                            <div class="col-sm-10">
-                                <div class="form-check">
-                                    <input type="radio" class="form-check-input" value="M" id="genderMale" name="gender">
-                                    <label class="form-check-label" for="gender">Male</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="radio" class="form-check-input" value="F" id="genderFemale" name="gender">
-                                    <label class="form-check-label" for="gender">Female</label>
-                                </div>
                             </div>
                         </div>
                     </form>

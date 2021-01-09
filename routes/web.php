@@ -32,11 +32,22 @@ Route::get('/dashboard', function () {
 
 
 Route::middleware(['auth'])->group(function(){
-    Route::resource('room', RoomController::class);
     Route::resource('student', StudentController::class)
-    ->except(['show']);
+    ->except(['show', 'edit']);
+    Route::get('student/excel', 'StudentController@downloadExcel')
+    ->name('student.excel');
+
+
+    Route::resource('room', RoomController::class)
+    ->except(['show', 'edit']);
+
+    Route::get('room/excel', 'RoomController@downloadExcel')
+    ->name('room.excel');
+
+
     Route::resource('roomSeat', RoomSeatController::class);
     Route::resource('StudentGroup', StudentGroupController::class);
+
 
 });
 

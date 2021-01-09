@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreStudentRequest extends FormRequest
+class StoreRoomRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,17 +24,17 @@ class StoreStudentRequest extends FormRequest
     public function rules()
     {
         return [
-            'gender' => 'required',
-            'no' => 'required|unique:students',
+            'no'=>'required|unique:rooms',
             'name' => 'required',
-            'upload_img' => 'required|file|image'
         ];
     }
-    public function messages(){
+
+    public function messages()
+    {
         return [
-            'required' => ':attribute field is required',
-            'unique' => ':attribute is duplicate',
-            'image' => 'please upload images',
+            'required' => ':attribute is required',
+            'unique' => ':attribute is duplicated',
         ];
     }
+
 }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Room;
 use App\Models\Student;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -44,5 +45,9 @@ class User extends Authenticatable
 
     public function students(){
         return $this->hasMany(Student::class);
+    }
+
+    public function rooms(){
+        return $this->hasMany(Room::class);
     }
 }
