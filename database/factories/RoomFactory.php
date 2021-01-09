@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Room;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class RoomFactory extends Factory
@@ -21,8 +22,10 @@ class RoomFactory extends Factory
      */
     public function definition()
     {
+
         return [
-            'name' => $this->faker->name
+            'no' => $this->faker->unique()->randomNumber($nbDigits = 5),
+            'name' => $this->faker->address,
         ];
     }
 }

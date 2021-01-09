@@ -10,6 +10,11 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 class RoomSeatFactory extends Factory
 {
+    public function __construct(UserRepository $userRepo)
+    {
+        $this->userRepo = $userRepo;
+    }
+    
     /**
      * The name of the factory's corresponding model.
      *

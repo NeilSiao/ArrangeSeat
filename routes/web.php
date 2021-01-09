@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\RoomSeatController;
+use App\Http\Controllers\StudentGroupController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,11 +32,11 @@ Route::get('/dashboard', function () {
 
 
 Route::middleware(['auth'])->group(function(){
-    Route::resources([
-        'room'=>RoomController::class,
-        'student'=>StudentController::class,
-        'roomSeat' => RoomSeatController::class,
-        'StudentGroup' => StudentGroup::class    ]);
+    Route::resource('room', RoomController::class);
+    Route::resource('student', StudentController::class)
+    ->except(['show']);
+    Route::resource('roomSeat', RoomSeatController::class);
+    Route::resource('StudentGroup', StudentGroupController::class);
 
 });
 

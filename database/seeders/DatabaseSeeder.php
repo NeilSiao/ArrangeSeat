@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Database\Seeders\RoomSeeder;
 use Database\Seeders\StudentSeeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,7 +17,12 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         \App\Models\User::factory(10)->create();
-        
+        \App\Models\User::factory()->create([
+            'email' => config('project.testAccount'),
+            'password' => Hash::make(config('project.testPassword')),
+            'name' => config('project.testName'),
+            ]
+        );
         $this->call([
             RoomSeeder::class,
             StudentSeeder::class

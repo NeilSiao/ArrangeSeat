@@ -2,23 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreStudentRequest;
 use App\Models\Student;
-use App\Service\UploadFileHandler;
 use Illuminate\Http\Request;
+use App\Service\UploadFileHandler;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StoreStudentRequest;
 
 class StudentController extends Controller
 {
 
     public $fileHandler;
-    public function __construct(UploadFileHandler $fileHandler) {
+    public function __construct(
+        UploadFileHandler $fileHandler
+        ) {
         $this->fileHandler = $fileHandler;
 
     }
     public function index(Request $request)
     {
-
-        $students =  Student::orderBy('created_at', 'Desc')
+        $user = Auth::user();
+        $students =  $user->students()->orderBy('created_at', 'Desc')
         ->paginate(10);
         
         
@@ -35,10 +38,7 @@ class StudentController extends Controller
     {
         dd($request->all());
     }
-    public function show(Request $request, Student $student)
-    {
-        return view('student.show');
-    }
+
 
     public function edit(Request $request)
     {

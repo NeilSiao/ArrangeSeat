@@ -19,6 +19,7 @@ class CreateStudentsTable extends Migration
             $table->string('name',100);
             $table->char('gender', 10);
             $table->string('photo');
+            $table->bigInteger('user_id');
             $table->timestamps();
         });
     }
