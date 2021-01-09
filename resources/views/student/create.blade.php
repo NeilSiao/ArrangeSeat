@@ -1,19 +1,18 @@
 @extends('layouts.sys')
 
 @section('content')
+    
+
     <div class="d-flex justify-content-center pt-4">
 
-        <form id="editForm" action="" method="POST" enctype="multipart/form-data">
+        <form id="editForm" action="{{route('student.store')}}" method="POST" enctype="multipart/form-data">
             @csrf
-            @method('PUT')
-        
-            <div class="form-group row align-items-center">
-                <label for="exampleInputEmail1" class="col-sm-2 col-form-label">ID</label>
-                <div class="col-sm-10">
-                    <input type="text" readonly class="form-control-plaintext" value="" id="id"
-                        aria-describedby="id">
-                </div>
+
+            <div class="form-group">
+
+                @include('components.alert') 
             </div>
+
             <div class="form-group row">
                 <label for="No" class="col-sm-2 col-form-label">No</label>
                 <div class="col-auto">
@@ -28,14 +27,14 @@
             </div>
             <div class="form-group row">
                 <label for="" class="col-sm-2 col-form-label">Photo: </label>
-               
+
                 <div class="col-auto">
-                   
-                        <div class="custom-file">
-                            <input type="file" id="upload_img" name="upload_img" class="custom-file-input">
-                            <label for="upload_img" class="custom-file-label">Choose file</label>
-                        </div>
-                   
+
+                    <div class="custom-file">
+                        <input type="file" id="upload_img" name="upload_img" class="custom-file-input">
+                        <label for="upload_img" class="custom-file-label">Choose file</label>
+                    </div>
+
                 </div>
             </div>
             <div class="form-group row">
@@ -50,6 +49,9 @@
                         <label class="form-check-label" for="gender">Female</label>
                     </div>
                 </div>
+            </div>
+            <div class="col-auto float-right">
+                <button class="btn btn-primary">Create</button>
             </div>
         </form>
     </div>

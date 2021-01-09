@@ -1,9 +1,8 @@
 @extends('layouts.sys')
 
 @section('content')
-    @if (session('msg') !== null)
-        <div class="alert alert-success">{{ session('msg') }}</div>
-    @endif
+    @include('components.alert')
+    
     <h3>Create Student Data</h3>
     <a href="{{route('student.create')}}" class="btn btn-primary m-1">Add Student</a>
     <table class="table">
@@ -152,11 +151,11 @@
                             <label for="" class="col-sm-2 col-form-label">Gender: </label>
                             <div class="col-sm-10">
                                 <div class="form-check">
-                                    <input type="radio" class="form-check-input" id="genderMale" name="gender">
+                                    <input type="radio" class="form-check-input" value="M" id="genderMale" name="gender">
                                     <label class="form-check-label" for="gender">Male</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="radio" class="form-check-input" id="genderFemale" name="gender">
+                                    <input type="radio" class="form-check-input" value="F" id="genderFemale" name="gender">
                                     <label class="form-check-label" for="gender">Female</label>
                                 </div>
                             </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreStudentRequest;
 use App\Models\Student;
 use App\Service\UploadFileHandler;
 use Illuminate\Http\Request;
@@ -17,7 +18,9 @@ class StudentController extends Controller
     public function index(Request $request)
     {
 
-        $students =  Student::paginate(5);
+        $students =  Student::orderBy('created_at', 'Desc')
+        ->paginate(10);
+        
         
         return view('student.index', compact(
             'students'
@@ -28,9 +31,9 @@ class StudentController extends Controller
         
         return view('student.create');
     }
-    public function store(Request $request)
+    public function store(StoreStudentRequest $request)
     {
-        dd(12);
+        dd($request->all());
     }
     public function show(Request $request, Student $student)
     {
@@ -45,11 +48,15 @@ class StudentController extends Controller
     {
         $no = $request->get('no');
         $name = $request->get('name');
-
-        $path = $this->fileHandler->saveStudentAvatar($request->file('upload_img'));
-        $student->photo = $path;
+        $gender = $request->get('gender');
+        $file = $request->file('upload_img');
+        if($file != null){
+            $path = $this->fileHandler->saveStudentAvatar($file);
+            $student->photo = $path;
+        }
         $student->no = $no;
         $student->name = $name;
+        $student->gender = $gender;
         $student->save();
 
         session()->flash('msg', 'Update Action Succeed');
