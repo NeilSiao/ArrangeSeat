@@ -34,14 +34,14 @@ Route::get('/dashboard', function () {
 Route::middleware(['auth'])->group(function(){
     Route::resource('student', StudentController::class)
     ->except(['show', 'edit']);
-    Route::get('student/excel', 'StudentController@downloadExcel')
-    ->name('student.excel');
 
+    Route::get('student/excel', [StudentController::class, 'downloadExcel'])
+    ->name('student.excel');
 
     Route::resource('room', RoomController::class)
     ->except(['show', 'edit']);
 
-    Route::get('room/excel', 'RoomController@downloadExcel')
+    Route::get('room/excel', [RoomController::class, 'downloadExcel'])
     ->name('room.excel');
 
 

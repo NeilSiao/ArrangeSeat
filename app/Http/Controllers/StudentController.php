@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Student;
 use Illuminate\Http\Request;
+use App\Service\ExcelExporter;
 use App\Service\UploadFileHandler;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\StoreStudentRequest;
 use App\Repository\StudentRepository;
+use App\Http\Requests\StoreStudentRequest;
 
 class StudentController extends Controller
 {
@@ -64,6 +65,14 @@ class StudentController extends Controller
     }
 
     public function downloadExcel(Request $request){
+        $title = ['no', 'name', 'gender'];
+        $data = Student::select($title)
+        ->get()
+        ->toArray();
         
+
+        $exporter = new ExcelExporter('room',$title ,$data );
+        $exporter->make();
+        $exporter->downloadExcel();
     }
 }

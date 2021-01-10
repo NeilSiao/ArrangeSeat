@@ -6,6 +6,7 @@ use App\Models\Room;
 use App\Repository\RoomRepository;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreRoomRequest;
+use App\Service\ExcelExporter;
 use Illuminate\Support\Facades\Request;
 
 class RoomController extends Controller
@@ -46,6 +47,11 @@ class RoomController extends Controller
     }
 
     public function downloadExcel(Request $request){
-        
+        $title = ['no', 'name'];
+        $data = Room::select($title)->get()->toArray();
+
+        $exporter = new ExcelExporter('room',$title ,$data );
+        $exporter->make();
+        $exporter->downloadExcel();
     }
 }
