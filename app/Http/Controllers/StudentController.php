@@ -69,7 +69,6 @@ class StudentController extends Controller
         $data = Student::select($title)
         ->get()
         ->toArray();
-        
 
         $exporter = new ExcelExporter('room',$title ,$data );
         $exporter->make();
