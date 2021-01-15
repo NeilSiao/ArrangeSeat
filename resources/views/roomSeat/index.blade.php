@@ -5,7 +5,7 @@
 @extends('layouts.sys')
 
 @section('content')
-<form action="">
+<form action="" id="seatListForm">
     <div class="row" style="min-height: calc(100vh - 65px - 56px); width: 100%;">
         <div class="container">
             <div class="col-3">

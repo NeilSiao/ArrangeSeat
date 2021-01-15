@@ -1,35 +1,35 @@
 import { renderSeat, iterateSeats } from '../DOM/seatDom';
-import { createSeat, storeSeat} from '../starter/starterSeat';
-import { roomList, Room} from '../module/constructor';
+import { getSeatTemplate, storeSeat} from '../starter/starterSeat';
+import { roomList, seatList} from '../module/constructor';
 import { updateLocalStorage, getFromLocalStorage } from '../module/localStorage';
-import {getSelectedRoom, getSelectedSeat} from '../module/selectedData';
+import { getSelectedRoom, getSelectedSeat } from '../module/selectedData';
 
-import {getRotationegrees} from '../module/utils';
+import {getRotationDegrees} from '../module/utils';
 
 export const addSeatToRoom = () => {
-    var roomOption = document.getElementById('roomOption');
-    var roomVal = roomOption.value;
-    var newSeat = createSeat();
-    newSeat.roomId = roomVal;
-    console.log('123');
+    var newSeat = getSeatTemplate();
+    seatList.push(newSeat);
     renderSeat(newSeat);
 };
 
 export const rotateSeat = (e) => {
-    var target = e.currentTarget;
-    var deg = getRotationegrees(seat);
-    $(target).css({
-        'transform': 'rotate(' + deg + 'deg)'
-    })
-
+    var seatId = e.currentTarget.id;
+    var target = $('#' + seatId);
+    //var deg = getRotationDegrees(target);
+    var seat = getSelectedSeat(seatId);
+    seat.rotate = (seat.rotate % 360) + 90;
+    iterateSeats();
 }
 
-export const updateSeatPos = (event) => {
-    var target = seatTarget(event.target);
-    console.log(target);
-    //var selectedSeat =    getSelectedSeat(target.roomId, target.seatId);
-    selectedSeat.pos_left = $('#' + target.seatId).css('left');
-    selectedSeat.pos_top = $('#' + target.seatId).css('top');
+export const updateSeatPos = (seatId) => {
+    var target = $("#" + seatId);
+    var left = target.css('left');
+    var top = target.css('top');
+    var selectedSeat = getSelectedSeat(seatId);
+
+    selectedSeat.pos_left = left;
+    selectedSeat.pos_top = top;
+    console.log(seatList);
 };
 
 

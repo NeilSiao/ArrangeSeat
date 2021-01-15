@@ -1,4 +1,6 @@
 export const roomList = [];
+export const seatList = [];
+
 
 export const Room = (name, id) =>({
     name, id, seats:[]

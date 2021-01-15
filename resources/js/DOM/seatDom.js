@@ -1,13 +1,13 @@
 //require("jquery-ui/ui/widgets/draggable");
 import {rotateSeat, updateSeatPos} from '../control/seatControl';
 import {getSelectedRoom} from '../module/selectedData';
+import {seatList} from '../module/constructor';
 
 
 
 export const renderSeat = (seat) => {
     const seatContainer = document.getElementById('room-wrapper');
-    //seatName,stuName,stuNo, id, pos_left, pos_top, rotate
-    console.log(seat.rotate);
+
     const seatDOM = `
     <div class="seat d-flex flex-column align-items-center border" id="${seat.id}"  style="left: ${seat.pos_left}; top: ${seat.pos_top}; transform: rotate(${seat.rotate}deg)" >
         <img class="w-100" height="48px"  src="./img/fake.png" alt="">
@@ -23,8 +23,8 @@ export const renderSeat = (seat) => {
     htmlSeat.draggable({
         containment: '.room-wrapper',
         stop: function(evt, ui){
-            console.log(evt, ui)
-           //updateSeatPos(evt);
+            console.log(evt, ui )
+           updateSeatPos(evt.target.id);
         }
     });
 
@@ -37,16 +37,15 @@ export const renderSeat = (seat) => {
 
 
 
-export const iterateSeats = (roomId)=>{
+export const iterateSeats = ()=>{
   const roomContainer = document.getElementById('room-wrapper');
   roomContainer.innerHTML = '';
-    var selectedRoom = getSelectedRoom(roomId);
-    console.log(selectedRoom);
-  if(selectedRoom === undefined){
+
+  if(seatList.length === 0){
       let nothing;
   }else{
-      selectedRoom.seats.forEach(seat => {
-          renderSeat(roomId, seat);
+      seatList.forEach(seat => {
+          renderSeat(seat);
       });
   }
 };

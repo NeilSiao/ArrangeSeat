@@ -3,7 +3,7 @@ export function unique(){
     return uuidv4();
 }
 
-export function getRotationegrees(obj){
+export function getRotationDegrees(obj){
     var matrix = obj.css("-webkit-transform") ||
     obj.css("-moz-transform") ||
     obj.css("-ms-transform") ||
