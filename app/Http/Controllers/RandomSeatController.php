@@ -19,10 +19,14 @@ class RandomSeatController extends Controller
         $selRoom = $request->get('roomOption') ?: $roomOption[0]['id'] ?: '';
         $roomSeat = $this->userRepo->roomSeat($selRoom);
         
+        $teamOption = $this->userRepo->teamOption($user);
+
+
         return view('randomSeat.index', compact(
             'roomOption',
             'selRoom',
             'roomSeat',
+            'teamOption',
         ));
     }
 }

@@ -1,7 +1,3 @@
-
-
-
-
 @extends('layouts.sys')
 
 @section('content')
@@ -13,7 +9,7 @@
                     <div class="col-auto form-group">
                         <label for="roomOption" class="form-label">教室選擇</label>
                         <select name="roomOption" id="roomOption" class="form-control">
-                            @foreach($roomOption as $option)
+                            @foreach ($roomOption as $option)
                                 <option value="{{ $option->id }}">{{ $option->name }}</option>
                             @endforeach
                         </select>
@@ -21,7 +17,9 @@
                     <div class="col-auto form-group">
                         <label for="classOption" class="form-label">班級選擇</label>
                         <select name="classOption" id="classOption" class="form-control">
-                            <option value="class_1">class_1</option>
+                            @foreach ($teamOption as $team)
+                                <option value="{{ $team->id }}"> {{ $team->name }} </option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="col-auto">
@@ -36,4 +34,4 @@
             </div>
         </div>
     </div>
-@endsection 
+@endsection

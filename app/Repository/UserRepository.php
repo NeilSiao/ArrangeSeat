@@ -25,7 +25,11 @@ class UserRepository{
         ->get()
         ->toJson();
     }
-    public function classes(){
-        return $this->hasMany(StudentGroup::class);
+    
+    public function teamOption($user){
+        return $user->teams()
+        ->select('id', 'name')
+        ->get();
     }
+
 }

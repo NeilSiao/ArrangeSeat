@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Room;
+use App\Models\Team;
 use App\Models\Student;
 use App\Models\StudentGroup;
 use Illuminate\Notifications\Notifiable;
@@ -47,7 +48,9 @@ class User extends Authenticatable
     public function students(){
         return $this->hasMany(Student::class);
     }
-
+    public function teams(){
+        return $this->hasMany(Team::class);
+    }
     public function rooms(){
         return $this->hasMany(Room::class);
     }
