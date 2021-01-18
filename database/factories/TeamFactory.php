@@ -2,18 +2,18 @@
 
 namespace Database\Factories;
 
-use App\Models\Student;
-use App\Models\StudentTeam;
+use App\Models\Team;
+use App\Models\Model;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class StudentGroupFactory extends Factory
+class TeamFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = StudentTeam::class;
+    protected $model = Team::class;
 
     /**
      * Define the model's default state.
@@ -23,8 +23,7 @@ class StudentGroupFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->streetName,
-            'student_id' => Student::random()->first()->id,
+            'name' => $this->faker->name,
         ];
     }
 }

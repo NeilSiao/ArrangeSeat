@@ -13,7 +13,9 @@
                     <div class="col-auto form-group">
                         <label for="roomOption" class="form-label">教室選擇</label>
                         <select name="roomOption" id="roomOption" class="form-control">
-                            <option value="room_1">room_1</option>
+                            @foreach($roomOption as $option)
+                                <option value="{{ $option->id }}">{{ $option->name }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="col-auto form-group">
@@ -23,9 +25,7 @@
                         </select>
                     </div>
                     <div class="col-auto">
-                        <button id="addBtn" class="btn btn-primary mt-2">新增座位</button>
-                    </div>
-                    <div class="col-auto">
+                        <button id="addBtn" class="btn btn-primary mt-2">Start Random</button>
                         <button id="saveBtn" class="btn btn-warning mt-2">儲存資料</button>
                     </div>
                 </div>

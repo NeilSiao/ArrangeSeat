@@ -6,6 +6,7 @@ export function getSelectedRoom(roomId){
 }
 
 export function getSelectedSeat(seatId){
+    seatId= Number(seatId)
     var index = seatList.map((seat) => seat.id).indexOf(seatId);
     return seatList[index];
 }

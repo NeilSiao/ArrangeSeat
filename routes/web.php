@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\RoomSeatController;
+use App\Http\Controllers\RandomSeatController;
 use App\Http\Controllers\StudentGroupController;
 
 /*
@@ -34,19 +35,19 @@ Route::get('/dashboard', function () {
 Route::middleware(['auth'])->group(function(){
     Route::resource('student', StudentController::class)
     ->except(['show', 'edit']);
-
     Route::get('student/excel', [StudentController::class, 'downloadExcel'])
     ->name('student.excel');
 
     Route::resource('room', RoomController::class)
     ->except(['show', 'edit']);
-
     Route::get('room/excel', [RoomController::class, 'downloadExcel'])
     ->name('room.excel');
 
-
     Route::resource('roomSeat', RoomSeatController::class);
-    Route::resource('StudentGroup', StudentGroupController::class);
+
+    Route::resource('randomSeat', RandomSeatController::class);
+
+    Route::resource('studentGroup', StudentGroupController::class);
 
 
 });

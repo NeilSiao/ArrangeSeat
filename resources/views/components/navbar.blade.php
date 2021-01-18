@@ -12,9 +12,10 @@
         <div class="navbar-nav">
             <a class="nav-link active" href="{{route('index')}}">首頁 <span class="sr-only">(當前位置)</span></a>
             <a class="nav-link" href="{{route('student.index')}}">新增學生</a>
+            <a class="nav-link" href="{{route('studentGroup.index')}}">新增學生Group</a>
             <a class="nav-link" href="{{route('room.index') }}">新增教室</a>
-            <a class="nav-link" href="{{route('roomSeat.index')}}">排列學生與教室座位</a>
-            
+            <a class="nav-link" href="{{route('roomSeat.index')}}">排列教室座位</a>
+            <a class="nav-link" href="{{route('randomSeat.index')}}">RandomSeatAndStudent</a>
             @auth
             <a class="nav-link" href="{{route('home')}}}">個人資訊</a>
             <a class="nav-link" href="{{route('logout')}}" tabindex="-1">登出</a>

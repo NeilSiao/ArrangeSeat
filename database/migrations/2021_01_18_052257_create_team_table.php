@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRoomSeatTable extends Migration
+class CreateTeamTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateRoomSeatTable extends Migration
      */
     public function up()
     {
-        Schema::create('room_seats', function (Blueprint $table) {
+        Schema::create('teams', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('room_id');
-            $table->bigInteger('student_id')->nullable();
-            $table->string('pos_left', 10);
-            $table->string('pos_top', 10);
-            $table->string('rotate', 10);
+            $table->bigInteger('user_id');
+            $table->string('name', 200);
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ class CreateRoomSeatTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('room_seats');
+        Schema::dropIfExists('teams');
     }
 }

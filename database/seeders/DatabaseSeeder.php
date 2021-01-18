@@ -4,8 +4,10 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Database\Seeders\RoomSeeder;
+use Database\Seeders\TeamSeeder;
 use Database\Seeders\StudentSeeder;
 use Illuminate\Support\Facades\Hash;
+use Database\Seeders\StudentTeamSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -25,7 +27,9 @@ class DatabaseSeeder extends Seeder
         );
         $this->call([
             RoomSeeder::class,
-            StudentSeeder::class
+            StudentSeeder::class,
+            TeamSeeder::class,
+            StudentTeamSeeder::class,
         ]);
         
     }

@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use App\Models\Student;
 use Illuminate\Database\Seeder;
+use App\Repository\UserRepository;
 
 class StudentSeeder extends Seeder
 {
@@ -20,8 +21,8 @@ class StudentSeeder extends Seeder
      */
     public function run()
     {
-        $path = public_path('stu_img');
-        array_map('unlink', glob(public_path('stu_img/*.png')));
+        $path = storage_path('app/public/stu_img') . '/*.png';
+        array_map('unlink', glob($path));
         
         $testAccount = $this->userRepo->testAccount();
         $id = $testAccount['id'];

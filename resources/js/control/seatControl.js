@@ -26,7 +26,8 @@ export const updateSeatPos = (seatId) => {
     var left = target.css('left');
     var top = target.css('top');
     var selectedSeat = getSelectedSeat(seatId);
-
+    console.log(selectedSeat, seatList)
+    console.log(target);
     selectedSeat.pos_left = left;
     selectedSeat.pos_top = top;
     console.log(seatList);

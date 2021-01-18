@@ -1,6 +1,10 @@
 import {addSeatToRoom} from './control/seatControl';
 import { seatList } from './module/constructor';
+import { iterateSeats } from './DOM/seatDom';
 import $ from 'jquery';
+
+window.iterateSeats = iterateSeats;
+window.setSeatList = setSeatList;
 
 $(function(){
     var btn = document.getElementById('addBtn');
@@ -25,8 +29,24 @@ $(function(){
             name: 'seatList',
             value: dataSet
         }).appendTo('form');
-        //evt.form.submit();
 
-    }
+        $('<input>').attr({
+            type: 'hidden',
+            name: 'roomOption',
+            value: $("#roomOption").val()
+        }).appendTo('form');
+
+        $("#seatListForm").submit();
+    } 
 })
+
+function setSeatList(input){
+    console.log(input)
+    input.forEach(element => {
+        seatList.push(element)
+    });
+    
+    console.log(seatList);
+}
+
 

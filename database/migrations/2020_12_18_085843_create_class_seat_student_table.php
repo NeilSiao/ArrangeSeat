@@ -13,7 +13,7 @@ class CreateClassSeatStudentTable extends Migration
      */
     public function up()
     {
-        Schema::create('class_seat_student', function (Blueprint $table) {
+        Schema::create('class_seat_students', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('class_id');
             $table->bigInteger('room_id');
@@ -29,6 +29,6 @@ class CreateClassSeatStudentTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('class_seat_student');
+        Schema::dropIfExists('class_seat_students');
     }
 }
