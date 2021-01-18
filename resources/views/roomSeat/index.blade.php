@@ -18,7 +18,7 @@
                         <label for="roomOption" class="form-label">教室選擇</label>
                         <select name="roomOption" id="roomOption" class="form-control" onchange="this.form.submit();">
                             @foreach($roomOption as $option)
-                                <option value="{{ $option->id }}" {{ ($defRoomVal == $option->id) ? 'selected' : ''  }} >{{ $option->name }}</option>
+                                <option value="{{ $option->id }}" {{ ($selRoom == $option->id) ? 'selected' : ''  }} >{{ $option->name }}</option>
                             @endforeach
                         </select>
                     </form>

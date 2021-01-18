@@ -12,7 +12,7 @@
         <div class="navbar-nav">
             <a class="nav-link active" href="{{route('index')}}">首頁 <span class="sr-only">(當前位置)</span></a>
             <a class="nav-link" href="{{route('student.index')}}">新增學生</a>
-            <a class="nav-link" href="{{route('studentGroup.index')}}">新增學生Group</a>
+            <a class="nav-link" href="{{route('team.index')}}">新增學生Team</a>
             <a class="nav-link" href="{{route('room.index') }}">新增教室</a>
             <a class="nav-link" href="{{route('roomSeat.index')}}">排列教室座位</a>
             <a class="nav-link" href="{{route('randomSeat.index')}}">RandomSeatAndStudent</a>

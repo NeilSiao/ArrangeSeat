@@ -5,6 +5,7 @@ use App\Models\StudentGroup;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoomController;
+use App\Http\Controllers\TeamController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\RoomSeatController;
 use App\Http\Controllers\RandomSeatController;
@@ -47,8 +48,10 @@ Route::middleware(['auth'])->group(function(){
 
     Route::resource('randomSeat', RandomSeatController::class);
 
-    Route::resource('studentGroup', StudentGroupController::class);
-
+    Route::get('team/excel', [TeamController::class, 'downloadExcel'])
+    ->name('team.excel');
+    Route::resource('team', TeamController::class)
+    ->except(['show', 'edit']);
 
 });
 

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Team;
+use App\Service\ExcelExporter;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -13,7 +14,7 @@ class Student extends Model
 
     public function getPhotoAttribute($value)
     {
-        $path=  Storage::url($value);
+        $path =  Storage::url($value);
         return $path;
     }
     public function getGenderAttribute($value)
@@ -31,7 +32,10 @@ class Student extends Model
         }
     }
 
-    public function teams(){
+    public function teams()
+    {
         return $this->belongsToMany(Team::class);
     }
+
+
 }

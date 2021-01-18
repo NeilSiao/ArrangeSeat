@@ -55,8 +55,5 @@ class User extends Authenticatable
         return $this->hasMany(Room::class);
     }
 
-    public function studentGroups(){
-        return $this->hasMany(StudentGroup::class);
-    }
 
 }

@@ -24,15 +24,14 @@ class RoomSeatController extends Controller
         $selRoom = $request->get('roomOption') ?: $roomOption[0]['id'] ?: '';
         $roomSeats = $this->userRepo->roomSeat($selRoom);
 
-        $classes = $this->userRepo->classes();
+
 
         return view(
             'roomSeat.index',
             compact(
                 'roomOption',
-                'defRoomVal',
+                'selRoom',
                 'roomSeats',
-                'classes',
             )
         );
     }
