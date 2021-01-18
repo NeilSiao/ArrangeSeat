@@ -49,8 +49,8 @@ class RoomSeatController extends Controller
             //dd($seat);
             $newSeat = [
                 'room_id' => $roomId,
-                'pos_left' => $this->trimInput($seat['pos_left']),
-                'pos_top' => $this->trimInput($seat['pos_top']),
+                'pos_left' => $seat['pos_left'],
+                'pos_top' => $seat['pos_top'],
                 'rotate' => $seat['rotate'],
             ];
             array_push($bulkInsert, $newSeat);
@@ -59,7 +59,5 @@ class RoomSeatController extends Controller
         session()->flash('msg', 'Update Succeed!');
         return redirect()->route('roomSeat.index', ['roomOption' => $roomId]);
     }
-    public function trimInput($str){
-        return intval(trim(str_replace('px', '', $str)));
-    }
+
 }

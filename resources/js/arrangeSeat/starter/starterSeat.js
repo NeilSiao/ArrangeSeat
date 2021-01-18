@@ -1,11 +1,7 @@
 import {
     Seat,
     seatList,
-    Room
 } from '../module/constructor';
-import {
-    updateLocalStorage
-} from '../module/localStorage';
 import {
     unique
 } from '../module/utils';

@@ -1,6 +1,6 @@
-import {addSeatToRoom} from './control/seatControl';
-import { seatList } from './module/constructor';
-import { iterateSeats } from './DOM/seatDom';
+import {addSeatToRoom} from './arrangeSeat/control/seatControl';
+import { seatList } from './arrangeSeat/module/constructor';
+import { iterateSeats } from './arrangeSeat/DOM/seatDom';
 import $ from 'jquery';
 
 window.iterateSeats = iterateSeats;

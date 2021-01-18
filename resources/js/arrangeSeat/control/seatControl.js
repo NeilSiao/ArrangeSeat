@@ -1,15 +1,12 @@
-import { renderSeat, iterateSeats } from '../DOM/seatDom';
+import { iterateSeats } from '../DOM/seatDom';
 import { getSeatTemplate, storeSeat} from '../starter/starterSeat';
-import { roomList, seatList} from '../module/constructor';
-import { updateLocalStorage, getFromLocalStorage } from '../module/localStorage';
-import { getSelectedRoom, getSelectedSeat } from '../module/selectedData';
-
-import {getRotationDegrees} from '../module/utils';
+import { seatList} from '../module/constructor';
+import { getSelectedSeat } from '../module/selectedData';
 
 export const addSeatToRoom = () => {
     var newSeat = getSeatTemplate();
     seatList.push(newSeat);
-    renderSeat(newSeat);
+    iterateSeats(newSeat);
 };
 
 export const rotateSeat = (e) => {
@@ -26,6 +23,7 @@ export const updateSeatPos = (seatId) => {
     var left = target.css('left');
     var top = target.css('top');
     var selectedSeat = getSelectedSeat(seatId);
+    console.log(seatId);
     console.log(selectedSeat, seatList)
     console.log(target);
     selectedSeat.pos_left = left;
