@@ -1,10 +1,11 @@
-import {addSeatToRoom} from './arrangeSeat/control/seatControl';
-import { seatList } from './arrangeSeat/module/constructor';
+import {addSeatToRoom, bindMotionEvent} from './arrangeSeat/control/seatControl';
+import { seatList, setSeatList } from './arrangeSeat/module/constructor';
 import { iterateSeats } from './arrangeSeat/DOM/seatDom';
 import $ from 'jquery';
 
 window.iterateSeats = iterateSeats;
 window.setSeatList = setSeatList;
+window.bindMotionEvent = bindMotionEvent;
 
 $(function(){
     var btn = document.getElementById('addBtn');
@@ -40,13 +41,5 @@ $(function(){
     } 
 })
 
-function setSeatList(input){
-    console.log(input)
-    input.forEach(element => {
-        seatList.push(element)
-    });
-    
-    console.log(seatList);
-}
 
 

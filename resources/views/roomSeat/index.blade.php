@@ -43,5 +43,6 @@
     <script>
         setSeatList({!! $roomSeats !!})
         iterateSeats();
+        bindMotionEvent();
     </script>
 @endsection 

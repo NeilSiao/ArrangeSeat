@@ -6,3 +6,11 @@ export const Seat =(seatName,stuName,stuNo, roomId, id, pos_left, pos_top, rotat
 });
 
 
+export function setSeatList(input){
+    console.log(input)
+    input.forEach(element => {
+        seatList.push(element)
+    });
+    
+    console.log(seatList);
+}

@@ -19,19 +19,7 @@ export const renderSeat = (seat) => {
     const position = 'afterbegin';
 
     seatContainer.insertAdjacentHTML(position, seatDOM);
-    var htmlSeat = $("#" + seat.id);
- 
-    htmlSeat.draggable({
-        containment: '.room-wrapper',
-        stop: function(evt, ui){
-            console.log(evt, ui )
-           updateSeatPos(evt.target.id);
-        }
-    });
-
-    htmlSeat.dblclick(function(e){
-        rotateSeat(e);
-    });
+  
 };
 
 

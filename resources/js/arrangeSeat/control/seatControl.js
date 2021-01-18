@@ -7,6 +7,7 @@ export const addSeatToRoom = () => {
     var newSeat = getSeatTemplate();
     seatList.push(newSeat);
     iterateSeats(newSeat);
+    bindMotionEvent();
 };
 
 export const rotateSeat = (e) => {
@@ -37,4 +38,22 @@ function seatTarget(target){
     //var roomId = target.attr('roomid');
     var seatId = target.attr('id');
     return {seatId: seatId};
+}
+
+export function bindMotionEvent(){
+    var seats = $(".room-wrapper .seat");
+    seats.each(function(index, elem){
+        $(elem).draggable({
+            containment: '.room-wrapper',
+            stop: function(evt, ui){
+                console.log(evt, ui )
+               updateSeatPos(evt.target.id);
+            }
+        });
+
+        $(elem).dblclick(function(e){
+            rotateSeat(e);
+        });
+
+    });
 }

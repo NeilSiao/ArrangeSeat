@@ -34,4 +34,9 @@
             </div>
         </div>
     </div>
+    <script src="{{ asset('js/randomSeat.js') }}"></script>
+    <script>
+        setSeatList({!! $roomSeat !!});
+        iterateSeats();
+    </script>
 @endsection
