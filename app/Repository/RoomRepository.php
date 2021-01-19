@@ -28,4 +28,12 @@ class RoomRepository{
     public function testAccount(){
         return Room::where('email', 'test@test.com')->first();
     }
+
+    public function roomSeat($roomId){
+        return Room::where('id', $roomId)
+        ->first()
+        ->roomSeat()
+        ->get()
+        ->toJson();
+    }
 }

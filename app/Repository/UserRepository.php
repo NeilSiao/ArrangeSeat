@@ -18,18 +18,14 @@ class UserRepository{
         ->select('id', 'name')
         ->get();
     }
-    public function roomSeat($roomId){
-        return Room::where('id', $roomId)
-        ->first()
-        ->roomSeat()
-        ->get()
-        ->toJson();
-    }
+   
     
     public function teamOption($user){
         return $user->teams()
         ->select('id', 'name')
         ->get();
     }
-
+    public function teamStudents($team){
+        return $team->students()->get();
+    }
 }
