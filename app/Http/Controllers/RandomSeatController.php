@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\RoomSeat;
 use Illuminate\Http\Request;
 use App\Repository\RoomRepository;
 use App\Repository\TeamRepository;
@@ -30,16 +31,31 @@ class RandomSeatController extends Controller
         
         $teamOption = $this->userRepo->teamOption($user);
         $selTeam = $request->get('teamOption') ?: $teamOption[0]['id'] ?: '';
-
         $teamStudent = $this->teamRepo->teamStudents($selTeam);
      
 
         return view('randomSeat.index', compact(
             'roomOption',
             'selRoom',
+            'selTeam',
             'roomSeat',
             'teamOption',
             'teamStudent',
         ));
+    }
+
+    /** 
+     * Need to check user id.
+     */
+    public function store(Request $request){
+        $id = Auth::id();
+        $seatList = $request->get('seatList');
+        $seatList = json_decode($seatList, true);
+        foreach($seatList as $seat){
+            RoomSeat::where('id', $seat['id'])
+            ->update(['student_id' => $seat['student_id']]);
+        }
+        session()->flash('msg', 'update Succeed!');
+        return back();
     }
 }

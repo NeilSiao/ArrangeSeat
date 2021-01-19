@@ -55,3 +55,4 @@ export function setStuList(input) {
 
     console.log(studentList);
 }
+

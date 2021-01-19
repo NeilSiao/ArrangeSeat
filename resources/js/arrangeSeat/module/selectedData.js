@@ -21,3 +21,22 @@ export function getSelStudent(studentId){
     }
     return student;
 }
+
+export function getSelStudentByNo(studentNo){
+    studentNo = String(studentNo);
+    var idArray =  studentList.map((student) => String(student.no));
+    var index = idArray.indexOf(studentNo);
+    var student = studentList[index];
+    if(student === undefined){
+        return null;
+    }
+    return student;
+}
+
+export function setClickedSeatId(stuId){
+    localStorage.setItem('currentStuId', stuId);
+}
+
+export function getClickedSeatId(){
+    return localStorage.getItem('currentStuId');
+}
