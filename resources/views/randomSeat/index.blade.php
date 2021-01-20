@@ -1,6 +1,9 @@
 @extends('layouts.sys')
 
 @section('content')
+<div class="container-fluid">
+
+
     <div class="row" style="min-height: calc(100vh - 65px - 56px); width: 100%;">
         <div class="container">
             <form action="{{ route('randomSeat.store') }}" method="POST" id="randomForm">
@@ -77,4 +80,6 @@
         bindModalEvent();
 
     </script>
+
+</div>
 @endsection

@@ -35,7 +35,8 @@ class StudentRepository{
             $path = $this->fileHandler->saveStudentAvatar($file);
             $student->photo = $path;
         }
-        return $student->save();
+        $student->save();
+        return $student;
     }
 
 }

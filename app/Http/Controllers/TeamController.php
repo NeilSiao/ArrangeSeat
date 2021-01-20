@@ -35,7 +35,7 @@ class TeamController extends Controller
         $newTeam->name= $name;
         $newTeam->save();
         
-        session()->flash('msg', 'Create Team Succeed');
+        session()->flash('msg', "新增團隊${name}成功");
         return view('teams.create');
     }
 
@@ -48,15 +48,15 @@ class TeamController extends Controller
         $name = $request->get('name');
         $team->name = $name;
         $team->save();
-        session()->flash('msg', 'Update Action Succeed');
+        session()->flash('msg', "更新團隊${name}成功");
         return back();
     }
     public function destroy(Request $request, Team $team)
     {
         $this->authorize('delete', $team);
-        
+        $name= $team->name;
         $result = $team->delete();
-        session()->flash('msg', 'Delete Action Succeed');
+        session()->flash('msg', "刪除團隊${name}成功");
         return back();
     }
     public function downloadExcel(Request $request)

@@ -1,5 +1,5 @@
 @if (session('msg') !== null)
-<div id="default-msg" class="alert alert-success">{{ session('msg') }}</div>
+<div id="default-msg" class="alert alert-success">{{ session()->pull('msg') }}</div>
 @endif
 
 @if(!$errors->isEmpty())

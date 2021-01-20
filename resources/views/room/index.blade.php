@@ -1,6 +1,9 @@
 @extends('layouts.sys')
 
 @section('content')
+<div class="container-fluid">
+
+
     @include('components.alert')
     
     <h3>Create Room Data</h3>
@@ -128,5 +131,5 @@
             </div>
         </div>
     </div>
-
+</div>
 @endsection

@@ -14,8 +14,8 @@ export const getSeatTemplate = () => {
     const pos_left = '200px';
     const pos_top = '200px';
     const rotate = 0;
-    const newSeat = Seat(seatName, stuName, stuNo,
-        null, id, pos_left, pos_top, rotate);
+    const newSeat = Seat(seatName, id, null,  null,
+        pos_left, pos_top, rotate, false);
     return newSeat;
 }
 

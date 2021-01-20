@@ -2,7 +2,9 @@
 
 @section('content')
     
+    <div class="container-fluid">
 
+    
     <div class="d-flex justify-content-center pt-4">
 
         <form id="editForm" action="{{route('room.store')}}" method="POST" enctype="multipart/form-data">
@@ -29,4 +31,5 @@
             </div>
         </form>
     </div>
+</div>
 @endsection

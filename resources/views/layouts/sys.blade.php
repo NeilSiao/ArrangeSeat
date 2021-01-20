@@ -13,7 +13,7 @@
 <body>
 
     @include('components.navbar')
-    <div class="container-fluid" id="" style="min-height: calc(100vh - 65px - 72px);">
+    <div  id="" style="min-height: calc(100vh - 72px - 65px );">
         @yield('content')
     </div>
     @include('components.footer')

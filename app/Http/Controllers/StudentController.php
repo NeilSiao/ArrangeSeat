@@ -40,8 +40,9 @@ class StudentController extends Controller
     }
     public function store(StoreStudentRequest $request)
     {
-        $this->stuRepo->storeStudent();
-        session()->flash('msg', 'Create Student Succeed');
+        $student = $this->stuRepo->storeStudent();
+        $name = $student->name;
+        session()->flash('msg', "新增學生${$name}成功");
         return view('student.create');
     }
 
@@ -51,8 +52,8 @@ class StudentController extends Controller
     {
         $this->authorize('update', $student);
         $this->stuRepo->updateStudent($student);
-
-        session()->flash('msg', 'Update Action Succeed');
+        $name = $student->name;
+        session()->flash('msg', "更新學生${name}成功");
         return back();
     }
     public function destroy(Request $request, Student $student)
@@ -60,7 +61,8 @@ class StudentController extends Controller
         $this->authorize('delete', $student);
         $this->fileHandler->deleteStudentAvatar($student->photo);
         $result = $student->delete();
-        session()->flash('msg', 'Delete Action Succeed');
+        $name = $student->name;
+        session()->flash('msg', "刪除學生${name}成功");
         return back();
     }
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Room;
 use App\Models\RoomSeat;
+use App\Repository\RoomRepository;
 use Illuminate\Http\Request;
 use App\Repository\UserRepository;
 use Illuminate\Support\Facades\Auth;
@@ -11,9 +12,10 @@ use Illuminate\Support\Facades\Auth;
 class RoomSeatController extends Controller
 {
 
-    public function __construct(UserRepository $userRepo)
+    public function __construct(UserRepository $userRepo,RoomRepository $roomRepo)
     {
         $this->userRepo = $userRepo;
+        $this->roomRepo = $roomRepo;
     }
     public function index(Request $request)
     {
@@ -22,7 +24,7 @@ class RoomSeatController extends Controller
         $roomOption = $this->userRepo->roomOption($user);
 
         $selRoom = $request->get('roomOption') ?: $roomOption[0]['id'] ?: '';
-        $roomSeats = $this->userRepo->roomSeat($selRoom);
+        $roomSeats = $this->roomRepo->roomSeat($selRoom);
 
 
 
@@ -46,7 +48,6 @@ class RoomSeatController extends Controller
         $seatList = json_decode($request->get('seatList'), true);
         $bulkInsert = [];
         foreach($seatList as $index => $seat){
-            //dd($seat);
             $newSeat = [
                 'room_id' => $roomId,
                 'pos_left' => $seat['pos_left'],

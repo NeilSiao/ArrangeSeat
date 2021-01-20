@@ -11,16 +11,52 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
             <a class="nav-link active" href="{{route('index')}}">首頁 <span class="sr-only">(當前位置)</span></a>
-            <a class="nav-link" href="{{route('student.index')}}">新增學生</a>
-            <a class="nav-link" href="{{route('team.index')}}">新增學生Team</a>
-            <a class="nav-link" href="{{route('room.index') }}">新增教室</a>
-            <a class="nav-link" href="{{route('roomSeat.index')}}">排列教室座位</a>
-            <a class="nav-link" href="{{route('randomSeat.index')}}">RandomSeatAndStudent</a>
             @auth
-            <a class="nav-link" href="{{route('home')}}}">個人資訊</a>
-            <a class="nav-link" href="{{route('logout')}}" tabindex="-1">登出</a>
+            <div class="nav-item dropdown">
+                <a href="" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
+                    學生管理
+                </a>
+                <div class="dropdown-menu">
+                    <a href="{{route('student.index')}}" class="dropdown-item">新增學生</a>
+                    <a href="{{route('team.index')}}" class="dropdown-item">新增學生群組</a>
+                </div>
+            </div>
+            
+            <div class="nav-item dropdown">
+                <a href="" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
+                    教室管理
+                </a>
+                <div class="dropdown-menu">
+                    <a href="{{route('room.index')}}" class="dropdown-item">新增教室</a>
+                    <a href="{{route('roomSeat.index')}}" class="dropdown-item">排列教室座位</a>
+                </div>
+            </div>
+
+            {{-- <a class="nav-link" href="{{route('student.index')}}">新增學生</a>
+            <a class="nav-link" href="{{route('team.index')}}">新增學生群組</a> --}}
+            {{-- <a class="nav-link" href="{{route('room.index') }}">新增教室</a>
+            <a class="nav-link" href="{{route('roomSeat.index')}}">排列教室座位</a> --}}
+            <a class="nav-link" href="{{route('randomSeat.index')}}">亂數排序教室與學生</a>
+            
+            <div class="nav-item dropdown">
+                <a href="" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
+                    個人資訊
+                </a>
+                <div class="dropdown-menu">
+                    <a href="{{route('home')}}" class="dropdown-item">編輯個人資訊</a>
+                    <a href="{{route('logout')}}" class="dropdown-item" onclick="event.preventDefault(); logout(this)">登出</a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none">
+                        @csrf
+                    </form>
+                    <script>
+                        function logout(){
+                            document.getElementById('logout-form').submit();
+                        }
+                    </script>
+                </div>
+            </div>
             @else
-            <a class="nav-link" href="{{route('login')}}">Login</a>
+                <a class="nav-link" href="{{route('login')}}" >登入</a>
             @endauth
             
         </div>

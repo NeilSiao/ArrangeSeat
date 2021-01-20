@@ -5,6 +5,9 @@
 @extends('layouts.sys')
 
 @section('content')
+<div class="container-fluid">
+
+
 @include('components.alert')
 <form action="{{route('roomSeat.store')}}" id="seatListForm" method="POST">
     @csrf
@@ -45,4 +48,5 @@
         iterateSeats();
         bindMotionEvent();
     </script>
+    </div>
 @endsection 
