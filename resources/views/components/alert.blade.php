@@ -10,7 +10,7 @@
     @endforeach
 @endif
 
-<script>
+<script type="application/javascript">
     $('#default-msg').fadeIn(function(){
         $(this).delay(2000).fadeOut(1600)
     });
