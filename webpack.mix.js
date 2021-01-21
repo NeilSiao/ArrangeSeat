@@ -15,8 +15,10 @@ mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/index.js', 'public/js')
     .js('resources/js/arrangeSeat.js', 'public/js')
     .js('resources/js/randomSeat.js', 'public/js')
+    .js('resources/js/team.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .sourceMaps()
     .options({
         processCssUrls: false
-    });
+    })
+    ;

@@ -57,6 +57,8 @@ Route::middleware(['auth'])->group(function(){
     Route::resource('team', TeamController::class)
     ->except(['show', 'edit']);
 
+    Route::get('team/{teamId}/students', [TeamController::class, 'students'])
+    ->name('teamStudents');
 });
 
 Auth::routes();

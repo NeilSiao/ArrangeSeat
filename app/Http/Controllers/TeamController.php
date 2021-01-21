@@ -17,10 +17,9 @@ class TeamController extends Controller
         $teams =  $user->teams()
             ->orderBy('created_at', 'Desc')
             ->paginate(10);
-        $students = $user->students()->get();
+
         return view('teams.index', compact(
             'teams',
-            'students',
         ));
     }
     public function create(Request $request)
@@ -71,7 +70,9 @@ class TeamController extends Controller
         $exporter->downloadExcel();
     }
 
-    public function storeStudent(){
-        
+    public function students(Request $request, Team $team ){
+        $user = Auth::user();
+        $students = $user->students()->get();
+        return response()->json($students);
     }
 }

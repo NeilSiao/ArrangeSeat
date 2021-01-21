@@ -3,5 +3,6 @@
     "/css/app.css": "/css/app.css",
     "/js/arrangeSeat.js": "/js/arrangeSeat.js",
     "/js/index.js": "/js/index.js",
-    "/js/randomSeat.js": "/js/randomSeat.js"
+    "/js/randomSeat.js": "/js/randomSeat.js",
+    "/js/team.js": "/js/team.js"
 }
