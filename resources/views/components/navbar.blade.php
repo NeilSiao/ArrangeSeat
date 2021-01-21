@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light mb-3" style="background-color: rgb(98, 170, 162);">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="{{ route('index') }}">
         <img src="{{asset('icons/cogwheel.png')}}" width="30" height="30" class="d-inline-block align-top text-white" alt=""
             loading="lazy">
         資訊系統
@@ -18,7 +18,8 @@
                 </a>
                 <div class="dropdown-menu">
                     <a href="{{route('student.index')}}" class="dropdown-item">新增學生</a>
-                    <a href="{{route('team.index')}}" class="dropdown-item">新增學生群組</a>
+                    <a href="{{route('team.index')}}" class="dropdown-item">新增團隊</a>
+                    <a href="{{route('team.index')}}" class="dropdown-item">新增團隊學生</a>
                 </div>
             </div>
             

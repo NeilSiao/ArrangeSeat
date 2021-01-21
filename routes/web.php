@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Models\RoomSeat;
 use App\Models\StudentGroup;
 use Illuminate\Support\Facades\Auth;
@@ -26,14 +27,17 @@ Route::get('/', function () {
     return view('welcome');
 })->name('index');
 
-Route::get('/dashboard', function () {
-    return view('home');
-})->middleware(['auth'])->name('dashboard');
+
 
 
 
 
 Route::middleware(['auth'])->group(function(){
+
+    Route::get('/dashboard', [HomeController::class, 'index'])
+    ->name('dashboard');
+
+
     Route::resource('student', StudentController::class)
     ->except(['show', 'edit']);
     Route::get('student/excel', [StudentController::class, 'downloadExcel'])

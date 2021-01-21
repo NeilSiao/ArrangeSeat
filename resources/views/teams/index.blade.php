@@ -29,6 +29,8 @@
                         <td class="align-middle" style="width: 20%">{{ $Team->name }}</td>
                         <td class="align-middle" style="width: 20%">
                             <div class="d-flex">
+                                <button class="btn-sm btn-info mr-3" data-id="{{ $Team->id }}" data-toggle="modal"
+                                    onclick="studentModal(this)">綁定學生</button>
                                 <button class="btn-sm btn-warning mr-3" data-id="{{ $Team->id }}" data-toggle="modal"
                                     onclick="edit(this)">編輯</button>
                                 <form action="{{ route('team.destroy', $Team->id) }} }}" method="post" id="deleteRow">
@@ -74,8 +76,16 @@
             document.getElementById('editForm').action = editFormAction;
         }
 
-    </script>
+        function studentModal(evt) {
+            window.stuEvt = evt;
+            
+            $('#studentModal').show();
+            var editFormAction = "{{ route('team.index') }}";
+            document.getElementById('editForm').action = editFormAction;
+        }
 
+    </script>
+    {{-- Edit Team Modal Start  --}}
     <div class="modal" id="editModal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -115,5 +125,68 @@
             </div>
         </div>
     </div>
+
+    {{-- Edit Team Modal End --}}
+
+    {{-- Choose Student Modal --}}
+    <div class="modal" tabindex="-1" role="dialog" id="studentModal">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">學生清單</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" style="overflow-y: scroll; height: 600px;">            
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">選擇</th>
+                            <th scope="col">學號</th>
+                            <th scope="col">相片</th>
+                            <th scope="col">姓名</th>
+                        </tr>
+                    </thead>
+                    <tbody >
+                        @if ($students->isNotEmpty())
+                            @foreach ($students as $index => $student)
+                                <tr>
+                                    <th class="align-middle" style="width: 10%" scope="row" data-id="{{$student->id}}">{{ $index + 1  }}</th>
+                                    <td class="align-middle" style="width: 20%">
+                                        <div class="form-control-lg">
+                                            <input type="checkbox" name="studentList" value="{{$student->id}}">
+                                        </div>
+                                    </td>
+                                    <td class="align-middle" style="width: 20%">{{ $student->no }}</td>
+                                    <td class="align-middle" style="width: 15%"><img width="64px" height="64px"
+                                            src="{{ $student->photo }}" alt=""></td>
+                                    <td class="align-middle" style="width: 20%">{{ $student->name }}</td>
+                                </tr>
+                            @endforeach
+                        @else
+                            <tr>
+                                <td style="width: 25%">沒有學生相關資料...</td>
+                                <td style="width: 20%"></td>
+                                <td style="width: 25%"></td>
+                                <td style="width: 25%"></td>
+                            </tr>
+                        @endif
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    
+
+    {{-- Choose Student Modal End --}}
+
 </div>
 @endsection
