@@ -1,5 +1,5 @@
 <template>
-  <div class="modal show" tabindex="-1" role="dialog" id="studentModal">
+  <div class="modal" tabindex="-1" role="dialog" id="studentModal" :key="teamId">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -9,6 +9,7 @@
             class="close"
             data-dismiss="modal"
             aria-label="Close"
+            @click="close"
           >
             <span aria-hidden="true">&times;</span>
           </button>
@@ -24,16 +25,19 @@
                 <th scope="col">姓名</th>
               </tr>
             </thead>
-            <tbody v-if="studentList != null">
-              <template v-for="(student, index) in studentList">
+            <tbody v-if="chunkStudentList != null">
+              <template v-for="(student, index) in chunkStudentList[current]">
                 <tr :key="student.id">
-                  <th class="align-middle" style="width: 10%" scope="row">{{ index + 1 }}</th>
+                  <th class="align-middle" style="width: 10%" scope="row">
+                    {{ (index + 1) + (perChunk * current) }}
+                  </th>
                   <td class="align-middle" style="width: 20%">
                     <div class="form-control-lg">
                       <input
                         type="checkbox"
                         name="studentList"
                         :value="student.id"
+                        v-model="selStudentId"
                       />
                     </div>
                   </td>
@@ -55,6 +59,12 @@
               </template>
             </tbody>
           </table>
+            <nav aria-label="Page navigation example">
+              <ul class="pagination">
+                <li class="page-item" v-bind:class="{disabled: current == 0}" ><a class="page-link"  @click="prevButton" href="#">Previous</a></li>
+                <li class="page-item" :class="{disabled: current == totalPage}" ><a class="page-link"  @click="nextButton" href="#">Next</a></li>
+              </ul>
+            </nav>
         </div>
         <div class="modal-footer">
           <button
@@ -70,6 +80,7 @@
       </div>
     </div>
   </div>
+
 </template>
 
 <script>
@@ -78,20 +89,65 @@ export default {
   data: function () {
     return {
       studentList: null,
+      current: 0,
+      chunkStudentList: [],
+      selStudentId: [],
+      perChunk: 5,
     };
   },
   created: function () {
     const self = this;
-    console.log(this.teamId);
-    axios.get(`/team/${this.teamId}/students`).then((res) => {
+
+    const path = `/team/${this.teamId}/students`;
+    console.log(path);
+    axios.get(path).then((res) => {
       console.log(res.data);
       self.studentList = res.data;
+      this.studentList.forEach((student) =>{
+        console.log(student.isChoose)
+        if(student.isChoose == 1){
+          this.selStudentId.push(student.id);
+        }
+      });
+      self.pagenate();
     });
+  },
+  mounted: function(){
+    console.log('mounted');
+      $('#studentModal').modal('show'); 
   },
   methods: {
     close() {
+      $('#studentModal').modal('hide');
+      console.log('hide');
       this.$emit("close");
     },
+    pagenate() {
+      this.chunkStudentList = this.studentList.reduce(
+        (resultArray, item, index) => {
+          const chunkIndex = Math.floor(index / this.perChunk);
+          if (!resultArray[chunkIndex]) {
+            resultArray[chunkIndex] = [];
+          }
+          resultArray[chunkIndex].push(item);
+          return resultArray;
+        },
+        []
+      );
+      
+
+    },
+    prevButton(){
+      this.current--;
+    },
+    nextButton(){
+      this.current++;
+    }
   },
+  computed:{
+          totalPage: function(){
+            return this.chunkStudentList.length - 1;
+          }
+  }
 };
 </script>

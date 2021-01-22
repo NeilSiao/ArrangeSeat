@@ -99,7 +99,7 @@
     {{-- Edit Team Modal End --}}
 
     {{-- Choose Student Modal --}}
-        <student-modal  v-bind:team-id="selTeamId"></student-modal>
+        <student-modal v-if="showModal"  v-bind:team-id="selTeamId" @@close="showModal=false;"></student-modal>
     {{-- Choose Student Modal End --}}
 
 </div>

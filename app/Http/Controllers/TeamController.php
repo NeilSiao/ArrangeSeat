@@ -70,9 +70,19 @@ class TeamController extends Controller
         $exporter->downloadExcel();
     }
 
-    public function students(Request $request, Team $team ){
+    public function students(Request $request, Team $team){
         $user = Auth::user();
         $students = $user->students()->get();
+        $alreadyInTeam = $team->students()
+        ->pluck('students.id')
+        ->toArray();
+        foreach($students as $student){
+            if(in_array($student->id, $alreadyInTeam)){
+                $student->isChoose = 1;
+            }else{
+                $student->isChoose = 0;
+            }
+        }
         return response()->json($students);
     }
 }

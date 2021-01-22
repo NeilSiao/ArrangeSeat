@@ -368,7 +368,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/neil/ArrangeSeat/resources/js/arrangeSeat.js */"./resources/js/arrangeSeat.js");
+module.exports = __webpack_require__(/*! /var/www/html/resources/js/arrangeSeat.js */"./resources/js/arrangeSeat.js");
 
 
 /***/ })

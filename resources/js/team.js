@@ -20,7 +20,8 @@ var vm = new Vue({
             console.log(e, id)
             this.selTeamId=id;
             this.showModal = true; 
-            $('#studentModal').modal('show');
+            $('#studentModal').modal('show'); 
+            console.log('modal open');
         }
     }
 });

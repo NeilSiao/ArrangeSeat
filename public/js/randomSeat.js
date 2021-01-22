@@ -381,7 +381,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _arr
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/neil/ArrangeSeat/resources/js/randomSeat.js */"./resources/js/randomSeat.js");
+module.exports = __webpack_require__(/*! /var/www/html/resources/js/randomSeat.js */"./resources/js/randomSeat.js");
 
 
 /***/ })
