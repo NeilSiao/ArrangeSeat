@@ -75,7 +75,7 @@
           >
             Close
           </button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-primary" @click="postStuList">Save changes</button>
         </div>
       </div>
     </div>
@@ -93,14 +93,15 @@ export default {
       chunkStudentList: [],
       selStudentId: [],
       perChunk: 5,
+      path: '',
     };
   },
   created: function () {
     const self = this;
 
-    const path = `/team/${this.teamId}/students`;
-    console.log(path);
-    axios.get(path).then((res) => {
+    this.path = `/team/${this.teamId}/students`;
+
+    axios.get(this.path).then((res) => {
       console.log(res.data);
       self.studentList = res.data;
       this.studentList.forEach((student) =>{
@@ -134,14 +135,23 @@ export default {
         },
         []
       );
-      
-
     },
     prevButton(){
       this.current--;
     },
     nextButton(){
       this.current++;
+    }, 
+    postStuList(){
+      axios.post(this.path, {selStuList: JSON.stringify(this.selStudentId)})
+      .then((res) => {
+        swal('儲存成功','', 'success');
+        console.log('success');
+        console.log(res.data.selStuList);
+      }).catch((error) => {
+        console.error(error);
+        swal('發生異常,請稍後再試','', 'error');
+      })
     }
   },
   computed:{

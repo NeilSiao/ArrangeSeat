@@ -85,4 +85,20 @@ class TeamController extends Controller
         }
         return response()->json($students);
     }
+
+    public function storeTeamStudents(Request $request, Team $team){
+        $selStuList = json_decode($request->get('selStuList'), true);
+        $result = [];
+        if($selStuList != null){
+            $team->students()->sync($selStuList);
+            $result['msg'] = 'Successed';
+            $result['selStuList'] = $selStuList;
+        }else{
+            $result['msg'] = 'failed';
+            return response(400)->json($result);
+        }
+      
+        
+        return response()->json([$result]);
+    }
 }

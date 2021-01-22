@@ -58,7 +58,9 @@ Route::middleware(['auth'])->group(function(){
     ->except(['show', 'edit']);
 
     Route::get('team/{team}/students', [TeamController::class, 'students'])
-    ->name('teamStudents');
+    ->name('teamStudents.index');
+    Route::post('team/{team}/students', [TeamController::class, 'storeTeamStudents'])
+    ->name('teamStudents.store');
 });
 
 Auth::routes();
