@@ -6,12 +6,12 @@
 
     @include('components.alert')
     
-    <h3>Create Room Data</h3>
+    <h3>教室管理</h3>
     
     <div class="row">
         <div class="col-auto my-2">
-            <a href="{{route('room.create')}}" class="btn btn-primary m-1">Add Room</a>
-            <a href="{{route('room.excel')}}" class="btn btn-secondary m-1">Download Excel</a>
+            <a href="{{route('room.create')}}" class="btn btn-primary m-1">新增教室</a>
+            <a href="{{route('room.excel')}}" class="btn btn-secondary m-1">下載 Excel</a>
         </div>
     </div>
 
@@ -19,27 +19,28 @@
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">no</th>
-                <th scope="col">name</th>
+                <th scope="col">編號</th>
+                <th scope="col">教室名稱</th>
+                <th scope="col">操作</th>
             </tr>
         </thead>
         <tbody>
             @if ($rooms->isNotEmpty())
-                @foreach ($rooms as $room)
+                @foreach ($rooms as $index => $room)
                     <tr>
-                        <th class="align-middle" style="width: 10%" scope="row">{{ $room->id }}</th>
+                        <th class="align-middle" style="width: 10%" scope="row" data-id="{{$room->id}}">{{ $index + 1 }}</th>
                         <td class="align-middle" style="width: 20%">{{ $room->no }}</td>
                         
                         <td class="align-middle" style="width: 20%">{{ $room->name }}</td>
                         
                         <td class="align-middle" style="width: 20%">
-                            <div class="d-flex justify-content-around">
-                                <button class="btn-sm btn-warning" data-id="{{ $room->id }}" data-toggle="modal"
-                                    onclick="edit(this)">Edit</button>
+                            <div class="d-flex ">
+                                <button class="btn-sm btn-warning mr-2" data-id="{{ $room->id }}" data-toggle="modal"
+                                    onclick="edit(this)">編輯</button>
                                 <form action="{{ route('room.destroy', $room->id) }} }}" method="post" id="deleteRow">
                                     @csrf
                                     <input type="hidden" name="_method" value="DELETE">
-                                    <button class="btn-sm btn-danger" type="submit" form="deleteRow">Delete</button>
+                                    <button class="btn-sm btn-danger" type="submit" form="deleteRow">刪除</button>
                                 </form>
                             </div>
                         </td>
@@ -47,7 +48,7 @@
                 @endforeach
             @else
                 <tr>
-                    <td style="width: 25%">Nothing to show...</td>
+                    <td style="width: 25%">沒有資料...</td>
                     <td style="width: 20%"></td>
                     <td style="width: 25%"></td>
                     <td style="width: 25%"></td>
@@ -72,7 +73,7 @@
             var name = tds[1];
             //console.log(row)
             var noText = $(no).text();
-            var idText = $(id).text();
+            var idText = $(id).data('id');
             var nameText = $(name).text();
             
             document.getElementById('id').value = idText;
@@ -90,7 +91,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Modify room Data</h5>
+                    <h5 class="modal-title">修改教室資料</h5>
                     <button type="button" class="close" data-dismiss="modal" onclick="$('#editModal').hide();"
                         aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -116,17 +117,17 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="name" class="col-sm-2 col-form-label">name</label>
+                            <label for="name" class="col-sm-2 col-form-label">教室名稱</label>
                             <div class="col-sm-10">
-                                <input type="text" name="name" class="form-control" id="name" placeholder="name">
+                                <input type="text" name="name" class="form-control" id="name" placeholder="名稱..">
                             </div>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" form="editForm">Save changes</button>
+                    <button type="submit" class="btn btn-primary" form="editForm">儲存</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal"
-                        onclick="$('#editModal').hide();">Close</button>
+                        onclick="$('#editModal').hide();">關閉</button>
                 </div>
             </div>
         </div>

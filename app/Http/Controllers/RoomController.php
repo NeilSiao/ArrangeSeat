@@ -37,11 +37,15 @@ class RoomController extends Controller
 
     public function update(Request $request, Room $room){
         $this->authorize('update', $room);
+        $name = $room->name;
+        session()->flash('msg', "更新教室 ${name}成功");
         $this->roomRepo->updateRoom($room, ['no', 'name']);
         return back();
     }
     public function destroy(Request $request, Room $room){
         $this->authorize('delete', $room);
+        $name = $room->name;
+        session()->flash('msg', "刪除教室 ${name}成功");
         $room->delete();
         return back();
     }

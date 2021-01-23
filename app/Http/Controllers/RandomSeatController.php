@@ -55,7 +55,7 @@ class RandomSeatController extends Controller
             RoomSeat::where('id', $seat['id'])
             ->update(['student_id' => $seat['student_id']]);
         }
-        session()->flash('msg', 'update Succeed!');
+        session()->flash('msg', '資料儲存成功!');
         return back();
     }
 }

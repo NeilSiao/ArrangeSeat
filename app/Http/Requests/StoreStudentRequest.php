@@ -27,14 +27,14 @@ class StoreStudentRequest extends FormRequest
             'gender' => 'required',
             'no' => 'required|unique:students',
             'name' => 'required',
-            'upload_img' => 'required|file|image'
+            //'upload_img' => 'required|file|image'
         ];
     }
     public function messages(){
         return [
-            'required' => ':attribute field is required',
-            'unique' => ':attribute is duplicate',
-            'image' => 'please upload images',
+            'required' => ':attribute 必填',
+            'unique' => ':attribute 已存在',
+            //'image' => '請上傳圖片',
         ];
     }
 }

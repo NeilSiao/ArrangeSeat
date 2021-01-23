@@ -47,3 +47,13 @@ footer{
 //     line-height: 1.2;
 //     color:#17a2b8;
 // }
+.print{
+    display: none;
+}
+@media print{
+  
+     .print{
+        display: block;
+    }
+
+}

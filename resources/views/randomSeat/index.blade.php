@@ -10,8 +10,11 @@
             <form action="{{ route('randomSeat.store') }}" method="POST" id="randomForm">
                 @csrf
             </form>
+        <div class="col-12 print">
+            <h1 class="print-title">座位表</h1>
+        </div>
             
-            <div class="row mt-3">
+            <div class="row mt-3 " id="notprint">
                     <div class="col-6">
                         <form action="{{ route('randomSeat.index') }}">
                             <div class="col-auto form-group">

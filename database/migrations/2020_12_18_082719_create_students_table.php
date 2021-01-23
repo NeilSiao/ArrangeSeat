@@ -18,7 +18,7 @@ class CreateStudentsTable extends Migration
             $table->string('no', 30);
             $table->string('name', 100);
             $table->char('gender', 10);
-            $table->string('photo');
+            $table->string('photo')->nullable();
             $table->bigInteger('user_id');
             $table->timestamps();
         });

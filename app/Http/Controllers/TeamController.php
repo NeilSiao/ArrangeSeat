@@ -55,6 +55,7 @@ class TeamController extends Controller
     {
         $this->authorize('delete', $team);
         $name= $team->name;
+        $team->students()->sync([]);
         $result = $team->delete();
         session()->flash('msg', "刪除團隊${name}成功");
         return back();

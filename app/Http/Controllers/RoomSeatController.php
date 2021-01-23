@@ -57,7 +57,7 @@ class RoomSeatController extends Controller
             array_push($bulkInsert, $newSeat);
         }
         RoomSeat::insert($bulkInsert);
-        session()->flash('msg', 'Update Succeed!');
+        session()->flash('msg', '儲存成功!');
         return redirect()->route('roomSeat.index', ['roomOption' => $roomId]);
     }
 
