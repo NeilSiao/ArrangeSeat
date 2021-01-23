@@ -87,15 +87,18 @@ class TeamController extends Controller
     }
 
     public function storeTeamStudents(Request $request, Team $team){
+        $this->authorize('delete', $team);
+
         $selStuList = json_decode($request->get('selStuList'), true);
+        
         $result = [];
-        if($selStuList != null){
+        if($selStuList !== null){
             $team->students()->sync($selStuList);
             $result['msg'] = 'Successed';
             $result['selStuList'] = $selStuList;
-        }else{
+        }else {
             $result['msg'] = 'failed';
-            return response(400)->json($result);
+            return response($selStuList,400);
         }
       
         

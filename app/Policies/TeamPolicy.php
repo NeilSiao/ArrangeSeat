@@ -27,4 +27,5 @@ class TeamPolicy
     public function delete(User $user, Team $team){
         return $user->id === $team->user_id;
     }
+
 }
