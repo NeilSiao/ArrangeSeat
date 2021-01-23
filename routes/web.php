@@ -36,7 +36,8 @@ Route::middleware(['auth'])->group(function(){
 
     Route::get('/dashboard', [HomeController::class, 'index'])
     ->name('dashboard');
-
+    Route::patch('/dashboard', [HomeController::class, 'patch'])
+    ->name('user.patch');
 
     Route::resource('student', StudentController::class)
     ->except(['show', 'edit']);

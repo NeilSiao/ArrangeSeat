@@ -29,4 +29,13 @@ class HomeController extends Controller
             'user'
         ));
     }
+
+    public function patch(Request $request){
+        $name = $request->get('name');
+        $user = Auth::user();
+        $user->name = $name;
+        $user->save();
+        session()->flash('msg', '使用者資料更新成功');
+        return back();
+    }
 }

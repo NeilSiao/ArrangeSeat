@@ -56,6 +56,9 @@ export function startRandom(evt) {
 
     var cnt;
     cnt = 0;
+
+    shuffle(seatList);
+    
     seatList.forEach(function (seat, index) {
         console.log(seat, cnt, studentList.length);
         if (studentList.length > cnt) {
