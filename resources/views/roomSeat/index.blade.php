@@ -31,7 +31,7 @@
 
     <div class="col-12">
         <div class="row">
-            <div class="col-2">
+            <div class="col-6">
                 <div class="row mt-3 ">
                     <div class="col-auto form-group">
                         <form action="">
@@ -49,11 +49,13 @@
                     </div>
                 </div>
             </div>
-        <div class="col-9">
-            <div class="room-wrapper" id="room-wrapper">
+        </div>
+        <div class="col-12">
+            <div class="col-9">
+                <div class="room-wrapper" id="room-wrapper">
+                </div>
             </div>
         </div>
-    </div>
 
 </div>
     </div>

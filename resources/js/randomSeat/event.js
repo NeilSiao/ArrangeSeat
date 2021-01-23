@@ -41,6 +41,23 @@ export function init() {
 
 }
 
+export function renderUnChooseStudent(){
+    var unChooseList = $('#unChooseStudent');
+    unChooseList.empty();
+    seatList.forEach(function(seat){
+        if(seat.student_id !== null){
+            var student = getSelStudent(seat.student_id);
+            student.seat_id = seat.id;
+        }
+    });
+
+    studentList.forEach(function(student){
+        if(student.seat_id == null){
+            unChooseList.append(`<li class='list-group-item'>${student.no} :${student.name}  </li>`);
+        }
+    });
+}
+
 export function startRandom(evt) {
     evt.preventDefault();
     window.studentList = studentList;
@@ -52,13 +69,14 @@ export function startRandom(evt) {
     })
     studentList.forEach(function (student) {
         student.isChoose = false;
+        student.seat_id = null;
     })
 
     var cnt;
     cnt = 0;
 
     shuffle(seatList);
-    
+
     seatList.forEach(function (seat, index) {
         console.log(seat, cnt, studentList.length);
         if (studentList.length > cnt) {
@@ -74,6 +92,8 @@ export function startRandom(evt) {
     });
 
     iterateSeats();
+    renderUnChooseStudent();
+    bindModalEvent();
 }
 
 function modalToggle(){
@@ -121,15 +141,25 @@ function saveModalAction(evt){
     var seatId = getClickedSeatId();
     var seat = getSelectedSeat(seatId);
     var stuNo = $('#StudentNo').val();
+    $('#StudentNo').val('');
+    var preStudent = getSelStudent(seat.student_id);
     var student = getSelStudentByNo(stuNo);
     if(student === null){
         $('#modal-warning').css('display', 'block') ;
+        return;
     }else{
         $('#modal-warning').css('display', 'none') ;
     }
-    console.log(seat, seatId, stuNo, student);
+    //swap seat_id
+    preStudent.isChoose = false;
+    preStudent.seat_id = null;
+    student.isChoose = true;
     seat.student_id = student.id;
+
+    console.log(seat, seatId, stuNo, student);
+
     modalToggle();
     iterateSeats();
     bindModalEvent();
+    renderUnChooseStudent();
 }

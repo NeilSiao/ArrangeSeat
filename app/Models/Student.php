@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Team;
+use App\Models\RoomSeat;
 use App\Service\ExcelExporter;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
