@@ -17,6 +17,7 @@ export const rotateSeat = (e) => {
     var seat = getSelectedSeat(seatId);
     seat.rotate = (seat.rotate % 360) + 90;
     iterateSeats();
+    bindMotionEvent();
 }
 
 export const updateSeatPos = (seatId) => {
