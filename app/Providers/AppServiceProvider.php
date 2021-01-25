@@ -27,8 +27,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot(UrlGenerator $url)
     {
         Paginator::useBootstrap();
-
-        $url->forceScheme('https');
+        if(config('app.APP_ENV') == 'production'){
+            $url->forceScheme('https');
+        }
 
         View::composer('components.navbar', function($view){
             $segment = request()->segment(1);

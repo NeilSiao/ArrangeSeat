@@ -15,6 +15,10 @@ class Student extends Model
 
     public function getPhotoAttribute($value)
     {
+        if($value == null){
+            return asset('img/fake.png');
+        }
+        
         $path =  Storage::url($value);
         return $path;
     }
