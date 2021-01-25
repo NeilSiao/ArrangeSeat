@@ -42,7 +42,7 @@ class StudentController extends Controller
     {
         $student = $this->stuRepo->storeStudent();
         $name = $student->name;
-        dd($name);
+
         session()->flash('msg', "新增學生${$name}成功");
         return view('student.create');
     }
