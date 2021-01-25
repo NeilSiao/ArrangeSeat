@@ -21,8 +21,10 @@ class StudentSeeder extends Seeder
      */
     public function run()
     {
-        $path = storage_path('app/public/stu_img') . '/*.png';
-        array_map('unlink', glob($path));
+        if(config('app.APP_ENV') == 'local'){
+            $path = storage_path('app/public/stu_img') . '/*.png';
+            array_map('unlink', glob($path));
+        }
         
         $testAccount = $this->userRepo->testAccount();
         $id = $testAccount['id'];

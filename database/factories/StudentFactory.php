@@ -22,7 +22,11 @@ class StudentFactory extends Factory
     public function definition()
     {
         $gender =($this->faker->numberBetween(0,1)) ? 'M' : 'F';
-        $photo = 'stu_img/' . $this->faker->image(storage_path('app/public/stu_img'), 400,300,null,false);
+        $photo = null;
+        if(config('app.APP_ENV') == 'local'){
+            $photo = 'stu_img/' . $this->faker->image(storage_path('app/public/stu_img'), 400,300,null,false);
+        }
+        
         return [
             'no' => $this->faker->numberBetween(1000,9999),
             'name' => $this->faker->name,
