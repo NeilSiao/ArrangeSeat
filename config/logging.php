@@ -42,9 +42,9 @@ return [
         ],
 
         'single' => [
-            'driver' => 'single',
+            'driver' => 'errorlog', //log for heroku
             'path' => storage_path('logs/laravel.log'),
-            'level' => env('LOG_LEVEL', 'debug'),
+            'level' => 'debug',
         ],
 
         'daily' => [
