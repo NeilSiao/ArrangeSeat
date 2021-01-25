@@ -1,11 +1,22 @@
 @extends('layouts.sys')
 
 @section('content')
-<div class="container-fluid">
+<div class="container">
 
 
-    <div class="container">
         @include('components.alert')
+        
+    <div class="alert alert-warning">
+        <div>
+            操作說明： 
+        </div>
+        <ul>
+            <li>點擊亂數排序,會將目前所選擇的教室學生亂數排序至座位</li>
+            <li>左鍵點擊座位,可以輸入當前班級學生的學號進行座位安排</li>
+            <li>Ctrl + 左鍵點擊座位,可以將學生資訊移除</li>
+            <li>位置擺放完畢後,請點擊儲存</li>
+        </ul>
+    </div>
     <div class="row" style="min-height: calc(100vh - 65px - 56px); width: 100%;">
             <form action="{{ route('randomSeat.store') }}" method="POST" id="randomForm">
                 @csrf
@@ -90,9 +101,9 @@
     <script>
         setSeatList({!! $roomSeat !!});
         setStuList({!! $teamStudent !!})
+        renderUnChooseStudent();
         iterateSeats();
         bindModalEvent();
-        renderUnChooseStudent();
     </script>
 
 </div>

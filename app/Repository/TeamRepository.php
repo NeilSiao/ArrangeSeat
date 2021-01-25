@@ -12,11 +12,14 @@ class TeamRepository{
     
 
     public function teamStudents($teamId){
-        return Team::where('id', $teamId)
+        $student =  Team::where('id', $teamId)
         ->first()
         ->students()
         ->get();
         
+        return $student->each(function($stu) use ($teamId){
+            $stu->team_id = $teamId;
+        });
         
     }
 }

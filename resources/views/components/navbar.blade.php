@@ -24,7 +24,7 @@
                 </a>
                 <div class="dropdown-menu">
                     <a href="{{route('student.index')}}" class="dropdown-item">新增學生</a>
-                    <a href="{{route('team.index')}}" class="dropdown-item">新增團隊</a>
+                    <a href="{{route('team.index')}}" class="dropdown-item">新增團隊與學生群組</a>
                 </div>
             </div>
             

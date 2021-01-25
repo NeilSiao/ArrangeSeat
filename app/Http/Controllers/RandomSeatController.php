@@ -28,12 +28,11 @@ class RandomSeatController extends Controller
         $roomOption = $this->userRepo->roomOption($user);
         $selRoom = $request->get('roomOption') ?: $roomOption[0]['id'] ?: '';
         $roomSeat = $this->roomRepo->roomSeat($selRoom);
-        
+        //dd($roomSeat);
         $teamOption = $this->userRepo->teamOption($user);
         $selTeam = $request->get('teamOption') ?: $teamOption[0]['id'] ?: '';
         $teamStudent = $this->teamRepo->teamStudents($selTeam);
-     
-
+        
         return view('randomSeat.index', compact(
             'roomOption',
             'selRoom',
@@ -49,8 +48,12 @@ class RandomSeatController extends Controller
      */
     public function store(Request $request){
         $id = Auth::id();
+        
         $seatList = $request->get('seatList');
+        // $team_id = $request->get('teamOption');
         $seatList = json_decode($seatList, true);
+        // because student can get into different team, so needs team_id to 
+        // distinguish it.
         foreach($seatList as $seat){
             RoomSeat::where('id', $seat['id'])
             ->update(['student_id' => $seat['student_id']]);

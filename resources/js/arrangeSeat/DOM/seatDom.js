@@ -1,24 +1,20 @@
-//require("jquery-ui/ui/widgets/draggable");
-import {
-    rotateSeat,
-    updateSeatPos
-} from '../control/seatControl';
 import {
     seatList,
-    studentList
 } from '../module/constructor';
 import {
-    getSelStudent
+    getSelStudentById
 } from '../module/selectedData';
 
 
 export const renderSeat = (seat) => {
     const seatContainer = document.getElementById('room-wrapper');
-    var student = getSelStudent(seat.student_id);
+    //seat could have other rooms student.. and 
+    //that student is not in this studentDataSet
+
+    var student = getSelStudentById(seat.student_id) || seat.studentInfo; 
     var stuNo, stuName, photo;
-    
     console.log(student);
-    if(student === null){
+    if(student === null || student === undefined){
         stuNo = 'No';
         stuName = 'Name';
         photo = './img/fake.png';
@@ -49,7 +45,7 @@ export const renderSeat = (seat) => {
 export const iterateSeats = () => {
     const roomContainer = document.getElementById('room-wrapper');
     roomContainer.innerHTML = '';
-    console.log(seatList);
+
     if (seatList.length === 0) {
         let nothing;
     } else {

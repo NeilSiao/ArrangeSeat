@@ -16,6 +16,7 @@ class CreateRoomSeatTable extends Migration
         Schema::create('room_seats', function (Blueprint $table) {
             $table->id();
             $table->foreignId('room_id');
+            //$table->foreignId('team_id')->nullable();
             $table->bigInteger('student_id')->nullable();
             $table->string('pos_left', 10);
             $table->string('pos_top', 10);

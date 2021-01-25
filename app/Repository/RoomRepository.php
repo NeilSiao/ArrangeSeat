@@ -32,8 +32,13 @@ class RoomRepository{
     public function roomSeat($roomId){
         return Room::where('id', $roomId)
         ->first()
-        ->roomSeat()
+        ->roomSeat()->with(['student'])
         ->get()
-        ->toJson();
+        ->each(function($roomSeat){
+            $roomSeat->student = $roomSeat->student;
+        })->toJson();;
+
+        //roomSeat -> each -> student...
+        
     }
 }

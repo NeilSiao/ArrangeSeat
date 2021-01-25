@@ -16,6 +16,7 @@ import {
     getClickedSeatId,
     getSelStudentByNo,
     getSelectedSeat,
+    getSelStudentById,
 } from '../arrangeSeat/module/selectedData'
 
 export function init() {
@@ -45,27 +46,24 @@ export function renderUnChooseStudent(){
     var unChooseList = $('#unChooseStudent');
     unChooseList.empty();
     seatList.forEach(function(seat){
-        if(seat.student_id !== null){
-            var student = getSelStudent(seat.student_id);
-            student.seat_id = seat.id;
+        // if have same student id but different team, setting isChoose to true;
+        var student = getSelStudentById(seat.student_id);
+        if(student !== null){
+            student.isChoose= true;
         }
     });
-
     studentList.forEach(function(student){
-        if(student.seat_id == null){
+        if(student.isChoose === false){
             unChooseList.append(`<li class='list-group-item'>${student.no} :${student.name}  </li>`);
         }
     });
 }
 
 export function startRandom(evt) {
-    evt.preventDefault();
-    window.studentList = studentList;
-    window.seatList = seatList;
     shuffle(studentList);
     seatList.forEach(function (seat) {
-        seat.isChoose = false;
         seat.student_id = null;
+        seat.studentInfo= null;
     })
     studentList.forEach(function (student) {
         student.isChoose = false;
@@ -83,7 +81,7 @@ export function startRandom(evt) {
             var student = studentList[cnt];
             console.log('student');
             console.log(student);
-            if (student.isChoose === false && seat.isChoose === false) {
+            if (student.isChoose === false) {
                 seat.student_id = student.id;
                 student.isChoose = true
                 cnt++;
@@ -104,24 +102,43 @@ export function bindModalEvent() {
     var seats = $(".room-wrapper .seat");
     seats.each(function (index, elem) {
         $(elem).on('click', function (evt) {
-            modalToggle();
             var target = evt.currentTarget;
             var seatId = $(target).attr('id');
+            if(evt.ctrlKey){
+                console.log('ctrl + click');
+                var seat = getSelectedSeat(seatId);
+                var student = getSelStudentById(seat.student_id);
+                if(student !== null){
+                    student.isChoose = false;
+                    student.seat_id = null;
+                }
+                
+                seat.studentInfo = null;
+                seat.student_id = null;
+                seat.isChoose = false;
+                iterateSeats();
+                bindModalEvent();
+                renderUnChooseStudent();
+                return 
+            }
             setClickedSeatId(seatId);
+            modalToggle();
+
         });
     });
 }
 
 export function randomFormSubmit(evt) {
     evt.preventDefault();
-    console.log(evt);
-    console.log(seatList);
+
     var dataSet = JSON.stringify(seatList);
-    console.log(evt.form);
+
     var input = $('input[name=seatList]');
     input.remove();
     $('input[name=roomOption]').remove();
-    console.log(input);
+    //$('input[name=teamOption]').remove();
+
+    
     $('<input>').attr({
         type: 'hidden',
         name: 'seatList',
@@ -134,15 +151,24 @@ export function randomFormSubmit(evt) {
         value: $("#roomOption").val()
     }).appendTo('#randomForm');
 
+    
+    // $('<input>').attr({
+    //     type: 'hidden',
+    //     name: 'teamOption',
+    //     value: $("#teamOption").val()
+    // }).appendTo('#randomForm');
+
+
     $("#randomForm").submit();
 }
 
 function saveModalAction(evt){
     var seatId = getClickedSeatId();
     var seat = getSelectedSeat(seatId);
+    
     var stuNo = $('#StudentNo').val();
     $('#StudentNo').val('');
-    var preStudent = getSelStudent(seat.student_id);
+    var preStudent = getSelStudentById(seat.student_id);
     var student = getSelStudentByNo(stuNo);
     if(student === null){
         $('#modal-warning').css('display', 'block') ;
@@ -150,16 +176,16 @@ function saveModalAction(evt){
     }else{
         $('#modal-warning').css('display', 'none') ;
     }
-    //swap seat_id
-    preStudent.isChoose = false;
-    preStudent.seat_id = null;
+    if(preStudent !== null){
+        preStudent.isChoose = false;
+    }
     student.isChoose = true;
     seat.student_id = student.id;
-
-    console.log(seat, seatId, stuNo, student);
+    seat.team_id = student.team_id;
 
     modalToggle();
     iterateSeats();
     bindModalEvent();
     renderUnChooseStudent();
 }
+

@@ -28,7 +28,7 @@ export function getRotationDegrees(obj) {
  * Fisher-Yates Shuffle
  * @param {array} array 
  * if u don't want to change original array, use array.slice(0)
- * to assign new data.
+ * to assign new data. var newArray = array.slice(0);
  */
 export function shuffle(array) {
     for (var i = array.length - 1; i > 0; i--) {

@@ -61,8 +61,8 @@
           </table>
             <nav aria-label="Page navigation example">
               <ul class="pagination">
-                <li class="page-item" v-bind:class="{disabled: current == 0}" ><a class="page-link"  @click="prevButton" href="#">Previous</a></li>
-                <li class="page-item" :class="{disabled: current == totalPage}" ><a class="page-link"  @click="nextButton" href="#">Next</a></li>
+                <li class="page-item" v-bind:class="{disabled: current == 0}" ><a class="page-link"  @click="prevButton" href="#">上一頁</a></li>
+                <li class="page-item" :class="{disabled: current == totalPage}" ><a class="page-link"  @click="nextButton" href="#">下一頁</a></li>
               </ul>
             </nav>
         </div>
@@ -73,9 +73,9 @@
             class="btn btn-secondary"
             data-dismiss="modal"
           >
-            Close
+            關閉
           </button>
-          <button type="button" class="btn btn-primary" @click="postStuList">Save changes</button>
+          <button type="button" class="btn btn-primary" @click="postStuList">儲存修改</button>
         </div>
       </div>
     </div>

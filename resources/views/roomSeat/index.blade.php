@@ -15,7 +15,7 @@
 <div class="container-fluid">
 <div class="row" style="min-height: calc(100vh - 65px - 56px); width: 100%;">
     <div class="col-12">
-        <div class="col-12">
+        
             <div class="alert alert-warning">
                 <div>
                     操作說明： 
@@ -26,7 +26,7 @@
                     <li>位置擺放完畢後,請點擊儲存</li>
                 </ul>
             </div>
-        </div>
+        
     </div>
 
     <div class="col-12">

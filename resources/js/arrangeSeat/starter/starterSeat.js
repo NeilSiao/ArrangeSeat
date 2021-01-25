@@ -19,6 +19,3 @@ export const getSeatTemplate = () => {
     return newSeat;
 }
 
-export const storeSeat = (newSeat) => {
-        seatList.push(newSeat);
-};

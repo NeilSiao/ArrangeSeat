@@ -1,7 +1,8 @@
 export const seatList = [];
 export const studentList = [];
 
-export const Seat = (seatName, id, student_id, room_id ,pos_left, pos_top, rotate, isChoose) => ({
+export const Seat = (seatName, id, student_id, room_id 
+    ,pos_left, pos_top, rotate, isChoose, team_id, studentInfo) => ({
     seatName,
     id,
     student_id,
@@ -9,7 +10,9 @@ export const Seat = (seatName, id, student_id, room_id ,pos_left, pos_top, rotat
     pos_left,
     pos_top,
     rotate,
-    isChoose
+    isChoose,
+    team_id,
+    studentInfo
 });
 
 export function setSeatList(input) {
@@ -24,13 +27,13 @@ export function setSeatList(input) {
             elem.pos_top,
             elem.rotate,
             false,
+            elem.team_id,
+            elem.student
         ));
     });
-
-    console.log(seatList);
 }
 
-export const Student = (id, no, name, gender, photo, user_id, isChoose) => ({
+export const Student = (id, no, name, gender, photo, user_id, isChoose, team_id) => ({
     id,
     no,
     name,
@@ -38,6 +41,7 @@ export const Student = (id, no, name, gender, photo, user_id, isChoose) => ({
     photo,
     user_id,
     isChoose,
+    team_id,
 })
 
 export function setStuList(input) {
@@ -50,9 +54,13 @@ export function setStuList(input) {
             elem.photo,
             elem.user_id,
             false,
+            elem.team_id,
         ))
     });
-
-    console.log(studentList);
 }
+
+export const storeSeat = (newSeat) => {
+    seatList.push(newSeat);
+};
+
 
