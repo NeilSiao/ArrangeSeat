@@ -15,7 +15,7 @@ class RandomSeatController extends Controller
     public function __construct(
         UserRepository $userRepo,
         RoomRepository $roomRepo,
-        TeamRepository $teamRepo,
+        TeamRepository $teamRepo
         )
     {
         $this->userRepo = $userRepo;

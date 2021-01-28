@@ -19,6 +19,7 @@ class TeamRepository{
         
         return $student->each(function($stu) use ($teamId){
             $stu->team_id = $teamId;
+            $stu->photo = $stu->image->secure_url ?? asset('img/fake.png');
         });
         
     }

@@ -14,15 +14,6 @@ class Student extends Model
 {
     use HasFactory;
 
-    public function getPhotoAttribute($value)
-    {
-        if($value == null){
-            return asset('img/fake.png');
-        }
-        
-        $path =  Storage::url($value);
-        return $path;
-    }
     public function getGenderAttribute($value)
     {
         switch ($value) {
