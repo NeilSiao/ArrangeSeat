@@ -32,7 +32,7 @@
                         <th class="align-middle" style="width: 10%" scope="row" data-id="{{$student->id}}">{{ $index + 1  }}</th>
                         <td class="align-middle" style="width: 20%">{{ $student->no }}</td>
                         <td class="align-middle" style="width: 15%"><img width="64px" height="64px"
-                                src="{{ $student->photo }}" alt=""></td>
+                                src="{{ $student->image->secure_url ?? asset('img/fake.png') }}" alt=""></td>
                         <td class="align-middle" style="width: 20%">{{ $student->name }}</td>
                         <td class="align-middle" style="width: 20%">{{ $student->gender }}</td>
                         <td class="align-middle" style="width: 20%">

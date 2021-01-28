@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Team;
 use App\Models\RoomSeat;
+use App\Models\CloudImage;
 use App\Service\ExcelExporter;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
@@ -42,5 +43,8 @@ class Student extends Model
         return $this->belongsToMany(Team::class);
     }
 
+    public function image(){
+        return $this->hasOne(CloudImage::class);
+    }
 
 }

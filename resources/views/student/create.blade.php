@@ -13,13 +13,13 @@
             <div class="form-group row">
                 <label for="No" class="col-sm-2 col-form-label">編號</label>
                 <div class="col-auto">
-                    <input type="text" name="no" class="form-control" id="no" placeholder="No">
+                    <input type="text" value="{{ old('no') }}" name="no" class="form-control" id="no" placeholder="No">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="name" class="col-sm-2 col-form-label">姓名</label>
                 <div class="col-auto">
-                    <input type="text" name="name" class="form-control" id="name" placeholder="name">
+                    <input type="text" value="{{ old('name') }}" name="name" class="form-control" id="name" placeholder="name">
                 </div>
             </div>
             <div class="form-group row">

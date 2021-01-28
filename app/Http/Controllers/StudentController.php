@@ -9,6 +9,7 @@ use App\Service\UploadFileHandler;
 use Illuminate\Support\Facades\Auth;
 use App\Repository\StudentRepository;
 use App\Http\Requests\StoreStudentRequest;
+use Cloudinary\Cloudinary;
 
 class StudentController extends Controller
 {
@@ -16,10 +17,12 @@ class StudentController extends Controller
     public $fileHandler;
     public function __construct(
         StudentRepository $stuRepo,
-        UploadFileHandler $fileHandler
+        UploadFileHandler $fileHandler,
+        
     ) {
         $this->stuRepo = $stuRepo;
         $this->fileHandler = $fileHandler;
+        
     }
     public function index(Request $request)
     {
