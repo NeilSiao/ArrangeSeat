@@ -17,8 +17,7 @@ class StudentController extends Controller
     public $fileHandler;
     public function __construct(
         StudentRepository $stuRepo,
-        UploadFileHandler $fileHandler,
-        
+        UploadFileHandler $fileHandler        
     ) {
         $this->stuRepo = $stuRepo;
         $this->fileHandler = $fileHandler;
