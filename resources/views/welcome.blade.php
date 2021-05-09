@@ -8,8 +8,6 @@
 
             <p class="lead text-white mt-5" id="jb-content" style="height: 150px;">
             </p>
-
-            <button class="btn btn-outline-warning float-right">前往瞭解</button>
         </div>
     </div>
 
