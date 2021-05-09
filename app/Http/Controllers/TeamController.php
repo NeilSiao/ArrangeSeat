@@ -75,7 +75,6 @@ class TeamController extends Controller
 
     public function students(Request $request, Team $team)
     {
-        $tag           = new ImageTag();
         $user          = Auth::user();
         $students      = $user->students()->get();
         $alreadyInTeam = $team->students()
