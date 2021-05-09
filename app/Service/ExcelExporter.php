@@ -2,17 +2,15 @@
 
 namespace App\Service;
 
-use PhpOffice\PhpSpreadsheet\Writer\Csv;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Csv;
 
 /**
  * example:
  * $exporter = new ExcelExporter('nameYouWant', array $titles, array $dataSet)
  * $exporter->make();
- * 
+ *
  */
-
-
 
 class ExcelExporter
 {
@@ -21,9 +19,9 @@ class ExcelExporter
     private $spreadSheet;
     public function __construct(string $fileName, array $aTitle, array $data)
     {
-        $this->fileName = $fileName . date('Y-m-d');
-        $this->aTitle = $aTitle;
-        $this->data = $data;
+        $this->fileName    = $fileName . date('Y-m-d');
+        $this->aTitle      = $aTitle;
+        $this->data        = $data;
         $this->spreadSheet = new Spreadsheet();
     }
 
@@ -36,17 +34,17 @@ class ExcelExporter
     {
         set_time_limit(0);
 
-        // switch to first worksheet 
+        // switch to first worksheet
         $currentSheet = $this->spreadSheet->getActiveSheet(0);
-        // setting titles 
+        // setting titles
         foreach ($this->aTitle as $titleIndex => $titleVal) {
             $cellsLoc = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::stringFromColumnIndex($titleIndex + 1) . '1';
             $currentSheet->setCellValue($cellsLoc, $titleVal);
-            $currentSheet->getStyle($cellsLoc)
-                ->getFill()
-                ->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
-                ->getStartColor()
-                ->setRGB($this->titleBgColor);
+            // $currentSheet->getStyle($cellsLoc)
+            //     ->getFill()
+            //     ->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
+            //     ->getStartColor()
+            //     ->setRGB($this->titleBgColor);
         }
 
         //setting data row
@@ -63,35 +61,35 @@ class ExcelExporter
             $style = [
                 'borders' => [
                     'allBorders' => [
-                        'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN
-                    ]
-                ]
+                        'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                    ],
+                ],
             ];
             $currentSheet->getStyle('A1:' . $pos)->applyFromArray($style);
         }
 
-
         $cellIterator = $currentSheet->getRowIterator('1')->current()->getCellIterator();
         $cellIterator->setIterateOnlyExistingCells(true);
-        foreach($cellIterator as $cell){
+        foreach ($cellIterator as $cell) {
             $currentSheet->getColumnDimension($cell->getColumn())->setAutoSize(true);
         }
-        
     }
 
-    public function downloadExcel(){
+    public function downloadExcel()
+    {
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-        header('Content-Disposition: attachment;filename=' . $this->fileName. '.xls');
+        header('Content-Disposition: attachment;filename=' . $this->fileName . '.xls');
         header('Cache-Control: max-age=0');
         $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($this->spreadSheet, 'Xls');
         $writer->save('php://output');
     }
 
-    public function downloadCsv(){
+    public function downloadCsv()
+    {
         header('Content-Type: text/x-csv');
-        header('Content-Disposition: attachment;filename=' . $this->fileName. '.csv');
+        header('Content-Disposition: attachment;filename=' . $this->fileName . '.csv');
         header('Cache-Control: max-age=0');
-        $writer =  new \PhpOffice\PhpSpreadsheet\Writer\Csv($this->spreadSheet);
+        $writer = new \PhpOffice\PhpSpreadsheet\Writer\Csv($this->spreadSheet);
         $writer->save('php://output');
     }
 }
