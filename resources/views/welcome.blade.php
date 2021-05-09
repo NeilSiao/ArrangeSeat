@@ -2,10 +2,8 @@
 @section('content')
     <div class="jumbotron jumbotron-fluid bg-cover bg-center" style="height:450px;" id="jb-bg">
         <div class="container">
-
             <div class="display-4 text-info" id="jb-title" style="display:inline">
             </div>
-
             <p class="lead text-white mt-5" id="jb-content" style="height: 150px;">
             </p>
         </div>
