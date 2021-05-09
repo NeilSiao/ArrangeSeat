@@ -40,6 +40,7 @@ class ExcelExporter
         foreach ($this->aTitle as $titleIndex => $titleVal) {
             $cellsLoc = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::stringFromColumnIndex($titleIndex + 1) . '1';
             $currentSheet->setCellValue($cellsLoc, $titleVal);
+
             // $currentSheet->getStyle($cellsLoc)
             //     ->getFill()
             //     ->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
